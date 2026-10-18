@@ -1,13 +1,13 @@
 {
-  "name": "atlasai-clone",
+  "name": "stonicai-clone",
   "version": "1.0.0",
-  "description": "Exact clone of Atlas AI (atlasai.com) website",
+  "description": "Exact clone of Stonic AI (stonicai.com) website",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "keywords": [
-    "atlas",
+    "stonic",
     "ai",
     "jarvis",
     "clone",

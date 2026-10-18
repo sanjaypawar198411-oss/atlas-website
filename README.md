@@ -1,6 +1,6 @@
-# Atlas AI Clone (atlasai.com)
+# Stonic AI Clone (stonicai.com)
 
-100% exact, high-fidelity replica of **Atlas AI** ([atlasai.com](https://atlasai.com/)).
+100% exact, high-fidelity replica of **Stonic AI** ([stonicai.com](https://stonicai.com/)).
 
 ## Features Included
 - **Complete Visual & Interactive Experience**:
@@ -9,7 +9,7 @@
   - Agent Town Showcase
   - Voice Assistant Core diagrams & circuits
   - World Monitor 3D globe display
-  - Atlas Mobile Remote showcase
+  - Stonic Mobile Remote showcase
   - Pricing Plans & FAQ interactive accordion
   - Founder story & Social channels
 - **All Pages Replicated**:

@@ -1,4 +1,4 @@
-import{r as tt,at as Iy,n as Lt}from"./index-atlas-v3110.js";/**
+import{r as tt,at as Iy,n as Lt}from"./index-stonic-v3110.js";/**
  * @license
  * Copyright 2010-2026 Three.js Authors
  * SPDX-License-Identifier: MIT
