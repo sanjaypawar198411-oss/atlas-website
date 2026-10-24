@@ -1,4 +1,4 @@
-import{r as tt,at as Iy,n as Lt}from"./index-CMgT0BId.js";/**
+import{r as tt,at as Iy,n as Lt}from"./index-victor-core.js";/**
  * @license
  * Copyright 2010-2026 Three.js Authors
  * SPDX-License-Identifier: MIT
