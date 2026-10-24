@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!--
     Build par yahan ek chhota inline script aata hai jo hero avatar ke particles
-    bundle se pehle hi banana shuru kar deta hai (vite.config.js → stonicAvatarBoot).
+    bundle se pehle hi banana shuru kar deta hai (vite.config.js → victorAvatarBoot).
     Viewport meta ke BAAD hi rahe: script screen ki chaurai parhta hai.
   -->
-  <script>try{(function(t){if(location.pathname==="/"){var a=window.innerWidth<t.phoneMaxWidth?t.phoneCount:t.desktopCount,s=t.workerUrl+"?count="+a,c=function(){return new Promise(function(e,n){var r=new Worker(t.workerUrl,{type:"module"});r.onmessage=function(u){r.terminate(),e(u.data)},r.onerror=function(u){r.terminate(),n(new Error(u.message||"avatar worker failed"))},r.postMessage({count:a})})},o;try{o=caches.open(t.cacheName).then(function(e){return e.match(s)}).then(function(e){return e?e.arrayBuffer():null}).then(function(e){if(!e||e.byteLength!==a*t.bytesPerParticle)return c();var n=new Float32Array(e),r=a*4;return{count:a,cached:!0,core:n.subarray(0,r),male:n.subarray(r,r*2),female:n.subarray(r*2,r*3),rnd:n.subarray(r*3)}},c)}catch(e){o=c()}o.catch(function(){}),window[t.bootKey]={count:a,cacheKey:s,promise:o}}})({workerUrl:"/assets/particles.worker-DhgqCxQ1.js",bootKey:"__stonicAvatarBoot",cacheName:"stonic-avatar-v1",bytesPerParticle:64,phoneMaxWidth:640,phoneCount:16e3,desktopCount:26e3})}catch(i){}</script>
+  <script>try{(function(t){if(location.pathname==="/"){var a=window.innerWidth<t.phoneMaxWidth?t.phoneCount:t.desktopCount,s=t.workerUrl+"?count="+a,c=function(){return new Promise(function(e,n){var r=new Worker(t.workerUrl,{type:"module"});r.onmessage=function(u){r.terminate(),e(u.data)},r.onerror=function(u){r.terminate(),n(new Error(u.message||"avatar worker failed"))},r.postMessage({count:a})})},o;try{o=caches.open(t.cacheName).then(function(e){return e.match(s)}).then(function(e){return e?e.arrayBuffer():null}).then(function(e){if(!e||e.byteLength!==a*t.bytesPerParticle)return c();var n=new Float32Array(e),r=a*4;return{count:a,cached:!0,core:n.subarray(0,r),male:n.subarray(r,r*2),female:n.subarray(r*2,r*3),rnd:n.subarray(r*3)}},c)}catch(e){o=c()}o.catch(function(){}),window[t.bootKey]={count:a,cacheKey:s,promise:o}}})({workerUrl:"/assets/particles.worker-DhgqCxQ1.js",bootKey:"__victorAvatarBoot",cacheName:"victor-avatar-v1",bytesPerParticle:64,phoneMaxWidth:640,phoneCount:16e3,desktopCount:26e3})}catch(i){}</script>
 
   <!--
     Default SEO block — used by the dev server and the spa.html fallback.
@@ -18,38 +18,38 @@
     SEO markers with each page's real head tags (react-helmet-async).
   -->
   <!-- SEO:START -->
-  <title>Stonic AI — JARVIS AI for PC | Sci-Fi Desktop Experience</title>
+  <title>Victor AI — JARVIS AI for PC | Sci-Fi Desktop Experience</title>
   <meta name="description"
-    content="Turn your desktop into the sci-fi interface you've only seen in movies. Stonic AI is a voice-controlled, JARVIS-style AI agent for Windows — desktop automation, local privacy, cinematic interface." />
-  <link rel="canonical" href="https://stonicai.com/" />
+    content="Turn your desktop into the sci-fi interface you've only seen in movies. Victor AI is a voice-controlled, JARVIS-style AI agent for Windows — desktop automation, local privacy, cinematic interface." />
+  <link rel="canonical" href="https://victorai.com/" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://stonicai.com/" />
-  <meta property="og:title" content="Stonic AI — Sci-Fi AI Desktop Experience for Windows" />
+  <meta property="og:url" content="https://victorai.com/" />
+  <meta property="og:title" content="Victor AI — Sci-Fi AI Desktop Experience for Windows" />
   <meta property="og:description"
     content="Voice-controlled, JARVIS-style AI for Windows. It talks. It moves. It controls your PC — locally and privately." />
-  <meta property="og:image" content="https://stonicai.com/og-image.jpg" />
-  <meta property="og:site_name" content="Stonic AI" />
+  <meta property="og:image" content="https://victorai.com/og-image.jpg" />
+  <meta property="og:site_name" content="Victor AI" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Stonic AI — Sci-Fi AI Desktop Experience for Windows" />
+  <meta name="twitter:title" content="Victor AI — Sci-Fi AI Desktop Experience for Windows" />
   <meta name="twitter:description"
     content="Voice-controlled, JARVIS-style AI for Windows. It talks. It moves. It controls your PC — locally and privately." />
-  <meta name="twitter:image" content="https://stonicai.com/og-image.jpg" />
+  <meta name="twitter:image" content="https://victorai.com/og-image.jpg" />
   <!-- SEO:END -->
 
-  <meta name="author" content="Stonic AI" />
-  <meta name="application-name" content="Stonic AI" />
+  <meta name="author" content="Victor AI" />
+  <meta name="application-name" content="Victor AI" />
   <meta name="theme-color" content="#000000" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=3.1.15" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3.1.15" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3.1.15" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3.1.15" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=3.1.16" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3.1.16" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3.1.16" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3.1.16" />
 
   <style>
     body {
@@ -110,16 +110,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <script type="module" crossorigin src="/assets/index-stonic-v3115.js"></script>
+  <script type="module" crossorigin src="/assets/index-victor-v3115.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-Cru9TfiC.css">
 
 <script>
 (function(){
-  var DL = '/Stonic-AI-Setup-3.1.15.exe';
+  var DL = '/Victor-AI-Setup-3.1.15.exe';
   function startDownload(){
     var a = document.createElement('a');
     a.href = DL;
-    a.download = 'Stonic-AI-Setup-3.1.15.exe';
+    a.download = 'Victor-AI-Setup-3.1.15.exe';
     document.body.appendChild(a);
     a.click();
     setTimeout(function(){ try { document.body.removeChild(a); } catch(e){} }, 500);

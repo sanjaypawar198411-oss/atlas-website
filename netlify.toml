@@ -2,6 +2,30 @@
   publish = "."
 
 [[redirects]]
+  from = "/Victor-AI-Setup-3.1.15.exe"
+  to = "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.15/Stonic-AI-Setup-3.1.15.exe"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/download/Victor-AI-Setup-3.1.15.exe"
+  to = "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.15/Stonic-AI-Setup-3.1.15.exe"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/Victor-AI-Setup.exe"
+  to = "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.15/Stonic-AI-Setup-3.1.15.exe"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/download/Victor-AI-Setup.exe"
+  to = "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.15/Stonic-AI-Setup-3.1.15.exe"
+  status = 302
+  force = true
+
+[[redirects]]
   from = "/Stonic-AI-Setup-3.1.15.exe"
   to = "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.15/Stonic-AI-Setup-3.1.15.exe"
   status = 302
@@ -21,12 +45,6 @@
 
 [[redirects]]
   from = "/Stonic-AI-Setup-3.1.10.exe"
-  to = "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.10/Atlas-AI-Setup-3.1.10.exe"
-  status = 302
-  force = true
-
-[[redirects]]
-  from = "/Stonic-AI-Setup.exe"
   to = "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.10/Atlas-AI-Setup-3.1.10.exe"
   status = 302
   force = true
@@ -83,4 +101,3 @@
   for = "/logo*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
-

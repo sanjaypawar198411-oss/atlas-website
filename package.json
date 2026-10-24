@@ -1,7 +1,7 @@
 {
   "name": "stonicai-clone",
   "version": "1.0.0",
-  "description": "Exact clone of Stonic AI (stonicai.com) website",
+  "description": "Exact clone of Victor AI (victorai.com) website",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

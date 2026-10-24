@@ -1,6 +1,6 @@
-# Stonic AI Clone (stonicai.com)
+# Victor AI Clone (victorai.com)
 
-100% exact, high-fidelity replica of **Stonic AI** ([stonicai.com](https://stonicai.com/)).
+100% exact, high-fidelity replica of **Victor AI** ([victorai.com](https://victorai.com/)).
 
 ## Features Included
 - **Complete Visual & Interactive Experience**:
@@ -9,7 +9,7 @@
   - Agent Town Showcase
   - Voice Assistant Core diagrams & circuits
   - World Monitor 3D globe display
-  - Stonic Mobile Remote showcase
+  - Victor AI Mobile Remote showcase
   - Pricing Plans & FAQ interactive accordion
   - Founder story & Social channels
 - **All Pages Replicated**:
