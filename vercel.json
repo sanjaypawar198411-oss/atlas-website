@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "/Victor-AI-Setup-3.1.15.exe",
+      "destination": "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.15/Victor-AI-Setup-3.1.15.exe",
+      "permanent": false
+    },
+    {
+      "source": "/download/Victor-AI-Setup-3.1.15.exe",
+      "destination": "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.15/Victor-AI-Setup-3.1.15.exe",
+      "permanent": false
+    },
+    {
+      "source": "/Victor-AI-Setup.exe",
+      "destination": "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.15/Victor-AI-Setup-3.1.15.exe",
+      "permanent": false
+    },
+    {
+      "source": "/download/Victor-AI-Setup.exe",
+      "destination": "https://github.com/sanjaypawar198411-oss/atlas-website/releases/download/v3.1.15/Victor-AI-Setup-3.1.15.exe",
+      "permanent": false
+    }
+  ]
+}
