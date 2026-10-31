@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment & Account Details — Victor AI Lifetime</title>
+  <link rel="icon" type="image/png" href="./assets/images/logo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            stonic: {
+              bg: '#05070a',
+              card: '#0c1017',
+              border: '#1a2333',
+              emerald: '#10b981',
+              cyan: '#06b6d4',
+              accent: '#3b82f6',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #05070a;
+      color: #e2e8f0;
+    }
+    .glass-panel {
+      background: rgba(12, 16, 23, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .emerald-glow {
+      box-shadow: 0 0 50px rgba(16, 185, 129, 0.15);
+    }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10b981;
+      color: #000;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+      z-index: 9999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-emerald-500/20 selection:text-emerald-400">
+
+  <!-- Toast Notification -->
+  <div id="copyToast" class="toast">
+    <i data-lucide="check" class="w-4 h-4 stroke-[3]"></i>
+    <span id="toastMsg">Copied to clipboard!</span>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass-panel border-b border-white/[0.08]">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="/logo.png" alt="Victor AI Logo" class="w-10 h-10 object-contain drop-shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+        <div>
+          <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-emerald-400 transition-colors">VICTOR AI</span>
+          <span class="block text-[9px] uppercase tracking-widest text-emerald-500 font-mono font-semibold">Payment & Account Information</span>
+        </div>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="https://whatsapp.com/channel/0029Vb966USJZg44yZcz6k0L" target="_blank" class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#25D366]/30 bg-[#25D366]/10 text-[#25D366] text-xs font-semibold hover:bg-[#25D366]/20 transition-all">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Official WhatsApp</span>
+        </a>
+        <div class="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Approved by Punit Pawar</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto px-6 py-10 md:py-14 space-y-10">
+    
+    <!-- Title Banner -->
+    <div class="text-center max-w-2xl mx-auto space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+        <span>PERMANENT LIFETIME ACCESS • ZERO MONTHLY FEES</span>
+      </div>
+      <h1 class="font-display text-3xl md:text-5xl font-extrabold text-white tracking-tight">Payment Account Details</h1>
+      <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+        Copy the account info below to complete your payment of <strong class="text-white font-semibold">₹2,999 INR</strong>. Once paid, submit your Transaction ID to get your Gmail approved instantly.
+      </p>
+    </div>
+
+    <!-- PRIMARY ACCOUNT DETAILS GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+      
+      <!-- CARD 1: Instant UPI / QR Code (India) -->
+      <div class="glass-panel p-6 md:p-8 rounded-3xl border-emerald-500/30 emerald-glow flex flex-col justify-between space-y-6">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400">
+                <i data-lucide="qr-code" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-lg text-white">Instant UPI & QR</h3>
+                <span class="text-[11px] text-gray-400 font-mono">GPay, PhonePe, Paytm, BHIM</span>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">₹2,999 INR</span>
+          </div>
+
+          <div class="mt-6 flex flex-col sm:flex-row items-center gap-5">
+            <!-- QR Code -->
+            <div class="w-36 h-36 bg-white p-2 rounded-2xl shrink-0 flex items-center justify-center border-2 border-emerald-500/50 shadow-[0_0_25px_rgba(16,185,129,0.25)]">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=upi://pay?pa=9356791463-2@ybl&pn=Punit%20Pawar&am=2999&cu=INR" alt="UPI QR Code" class="w-full h-full object-contain">
+            </div>
+
+            <!-- UPI Details -->
+            <div class="space-y-3 w-full">
+              <div class="space-y-2.5">
+                <div class="space-y-1">
+                  <span class="text-[11px] uppercase tracking-wider text-purple-400 font-mono font-bold flex items-center gap-1.5">
+                    <span>PhonePe UPI:</span>
+                  </span>
+                  <div class="p-2.5 rounded-xl bg-black/50 border border-purple-500/30 flex items-center justify-between gap-2">
+                    <span class="font-mono text-xs font-bold text-purple-300" id="phonepeVal">9356791463-2@ybl</span>
+                    <button type="button" onclick="copyText('9356791463-2@ybl', 'PhonePe UPI copied!')" class="p-1.5 rounded-lg bg-purple-500/15 hover:bg-purple-500/30 text-purple-300 transition-colors" title="Copy PhonePe UPI">
+                      <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="space-y-1">
+                  <span class="text-[11px] uppercase tracking-wider text-cyan-400 font-mono font-bold flex items-center gap-1.5">
+                    <span>Paytm UPI:</span>
+                  </span>
+                  <div class="p-2.5 rounded-xl bg-black/50 border border-cyan-500/30 flex items-center justify-between gap-2">
+                    <span class="font-mono text-xs font-bold text-cyan-300" id="paytmVal">pawar-parvati@ptyes</span>
+                    <button type="button" onclick="copyText('pawar-parvati@ptyes', 'Paytm UPI copied!')" class="p-1.5 rounded-lg bg-[#d4af37]/15 hover:bg-[#d4af37]/30 text-cyan-300 transition-colors" title="Copy Paytm UPI">
+                      <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <span class="text-[11px] uppercase tracking-wider text-gray-400 font-mono">Account Holder:</span>
+                <p class="font-medium text-white text-sm">Punit Pawar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" onclick="copyText('9356791463-2@ybl', 'PhonePe UPI ID copied!')" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-display font-extrabold text-sm transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span>Copy PhonePe UPI (9356791463-2@ybl)</span>
+        </button>
+      </div>
+
+      <!-- CARD 2: Direct Bank Transfer (NEFT / IMPS) -->
+      <div class="glass-panel p-6 md:p-8 rounded-3xl border-white/10 flex flex-col justify-between space-y-6">
+        <div>
+          <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/25 flex items-center justify-center text-blue-400">
+                <i data-lucide="building-2" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-lg text-white">Bank Account Transfer</h3>
+                <span class="text-[11px] text-gray-400 font-mono">NEFT / IMPS / RTGS</span>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30">Direct Wire</span>
+          </div>
+
+          <!-- Bank Fields -->
+          <div class="mt-5 space-y-2.5 font-mono text-xs">
+            <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+              <span class="text-gray-400">Account Holder:</span>
+              <div class="flex items-center gap-2">
+                <span class="text-white font-bold" id="bankHolder">Punit Pawar</span>
+                <button type="button" onclick="copyText('Punit Pawar', 'Account holder copied!')" class="text-gray-400 hover:text-white p-1">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+              <span class="text-gray-400">Bank Name:</span>
+              <div class="flex items-center gap-2">
+                <span class="text-white font-bold" id="bankName">State Bank of India</span>
+                <button type="button" onclick="copyText('State Bank of India', 'Bank name copied!')" class="text-gray-400 hover:text-white p-1">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+              <span class="text-gray-400">Account Status:</span>
+              <span class="text-amber-400 font-mono text-xs">Direct UPI Recommended</span>
+            </div>
+            <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between hidden">
+              <span class="text-gray-400">Account No:</span>
+              <div class="flex items-center gap-2">
+                <span class="text-emerald-400 font-bold tracking-wider" id="bankAcc">41029485721</span>
+                <button type="button" onclick="copyText('41029485721', 'Account number copied!')" class="text-gray-400 hover:text-emerald-400 p-1">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+              <span class="text-gray-400">IFSC Code:</span>
+              <div class="flex items-center gap-2">
+                <span class="text-emerald-400 font-bold tracking-wider" id="bankIfsc">SBIN0001428</span>
+                <button type="button" onclick="copyText('SBIN0001428', 'IFSC code copied!')" class="text-gray-400 hover:text-emerald-400 p-1">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" onclick="copyBankDetails()" class="w-full py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-display font-semibold text-sm transition-all flex items-center justify-center gap-2">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span>Copy Full Bank Details</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- INTERNATIONAL & WHATSAPP SUPPORT ROW -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Global International Options -->
+      <div class="glass-panel p-6 rounded-2xl border-white/10 space-y-4">
+        <div class="flex items-center gap-2.5">
+          <i data-lucide="globe" class="w-5 h-5 text-cyan-400"></i>
+          <h3 class="font-display font-bold text-white text-base">International Payments (USDT / Crypto)</h3>
+        </div>
+        <div class="space-y-3 font-mono text-xs">
+          <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="text-gray-400 block text-[10px]">PayPal:</span>
+              <span class="text-white font-bold" id="paypalVal">paypal@victorai.com</span>
+            </div>
+            <button type="button" onclick="copyText('paypal@victorai.com', 'PayPal email copied!')" class="px-3 py-1.5 rounded-lg bg-[#d4af37]/10 hover:bg-[#d4af37]/20 text-cyan-400 text-xs font-sans font-semibold flex items-center gap-1.5">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+            <div class="min-w-0 pr-2">
+              <span class="text-gray-400 block text-[10px]">USDT (TRC-20):</span>
+              <span class="text-white font-bold text-[11px] truncate block" id="usdtVal">TY7fB9Rz2qX4mK1P9L8aD3cE5nF6hJ0vWs</span>
+            </div>
+            <button type="button" onclick="copyText('TY7fB9Rz2qX4mK1P9L8aD3cE5nF6hJ0vWs', 'USDT address copied!')" class="px-3 py-1.5 rounded-lg bg-[#d4af37]/10 hover:bg-[#d4af37]/20 text-cyan-400 text-xs font-sans font-semibold flex items-center gap-1.5 shrink-0">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Channel Support -->
+      <div class="glass-panel p-6 rounded-2xl border-[#25D366]/20 bg-[#25D366]/[0.03] space-y-4 flex flex-col justify-between">
+        <div class="space-y-2">
+          <div class="flex items-center gap-2.5 text-[#25D366]">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+            <h3 class="font-display font-bold text-white text-base">WhatsApp Channel & Screenshot Help</h3>
+          </div>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            Join the official Victor AI WhatsApp channel to send your payment screenshot directly to Punit Pawar for instant priority approval.
+          </p>
+        </div>
+        <a href="https://whatsapp.com/channel/0029Vb966USJZg44yZcz6k0L" target="_blank" class="w-full py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-black font-display font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(37,211,102,0.25)]">
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+          <span>Open Official WhatsApp Channel</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- SUBMIT TRANSACTION ID FOR APPROVAL -->
+    <div class="glass-panel p-6 md:p-8 rounded-3xl border-white/10 space-y-6">
+      <div class="border-b border-white/[0.08] pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="font-display text-xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>
+            <span>Submit Payment for Account Approval</span>
+          </h2>
+          <p class="text-xs text-gray-400 mt-0.5">Enter the exact Gmail you use in Victor AI Desktop alongside your transaction reference.</p>
+        </div>
+        <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 self-start">Step 2 of 2</span>
+      </div>
+
+      <form id="checkoutForm" onsubmit="handleOrderSubmit(event)" class="space-y-5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="space-y-1.5">
+            <label class="block text-xs font-mono uppercase text-gray-400">Full Name *</label>
+            <input type="text" id="buyerName" required placeholder="e.g. Punit Pawar" class="w-full bg-white/[0.03] border border-white/10 focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all">
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="block text-xs font-mono uppercase text-emerald-400 font-semibold">Registered Gmail Address *</label>
+            <input type="email" id="buyerEmail" required placeholder="your.name@gmail.com" class="w-full bg-white/[0.03] border border-emerald-500/40 focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all">
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="block text-xs font-mono uppercase text-gray-400">WhatsApp / Phone *</label>
+            <input type="tel" id="buyerWhatsapp" required placeholder="+91 98765 43210" class="w-full bg-white/[0.03] border border-white/10 focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all">
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <label class="block text-xs font-mono uppercase text-emerald-400 font-semibold">Transaction ID / UTR / Reference Number *</label>
+          <input type="text" id="transactionId" required placeholder="e.g. 427819385921 (UPI UTR) or PayPal Transaction ID" class="w-full bg-white/[0.03] border border-white/10 focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all font-mono">
+          <p class="text-[11px] text-gray-500">Punit Pawar checks this reference in the banking log to toggle your account to Approved in Firestore.</p>
+        </div>
+
+        <button type="submit" id="submitBtn" class="w-full py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-black font-display font-extrabold text-base transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)] active:scale-98 flex items-center justify-center gap-2 cursor-pointer">
+          <i data-lucide="send" class="w-5 h-5"></i>
+          <span>Submit Payment & Request Approval</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- LIVE APPROVAL STATUS CHECKER -->
+    <div class="glass-panel p-6 rounded-3xl border-white/10 space-y-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-[#d4af37]/10 border border-cyan-500/20 flex items-center justify-center">
+          <i data-lucide="search" class="w-4 h-4 text-cyan-400"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-white text-sm">Already Paid? Check Real-Time Approval Status</h4>
+          <p class="text-xs text-gray-400">Enter your Gmail to see if Punit Pawar has approved your account in Firestore.</p>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-2">
+        <input type="email" id="checkEmailInput" placeholder="Enter your registered Gmail" class="flex-1 bg-white/[0.03] border border-white/10 focus:border-cyan-500 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none font-mono">
+        <button type="button" onclick="handleCheckStatus()" class="px-6 py-2.5 rounded-xl bg-[#d4af37]/20 hover:bg-[#d4af37]/30 text-cyan-400 border border-cyan-500/30 text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 cursor-pointer">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+          <span>Verify Status</span>
+        </button>
+      </div>
+      <div id="checkResult" class="hidden text-xs p-3.5 rounded-xl font-mono"></div>
+    </div>
+
+  </main>
+
+  <!-- SUCCESS MODAL -->
+  <div id="successModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="glass-panel p-8 md:p-10 rounded-3xl border-emerald-500/30 max-w-lg w-full space-y-6 text-center emerald-glow relative">
+      <div class="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto">
+        <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="font-display text-2xl font-bold text-white">Payment Received!</h3>
+        <p class="text-sm text-gray-300 leading-relaxed">
+          Thank you, <span id="confirmedName" class="text-white font-semibold"></span>! Your license verification request has been logged.
+        </p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-black/50 border border-white/10 text-left font-mono text-xs space-y-2 text-gray-300">
+        <p>Registered Gmail: <span id="confirmedEmail" class="text-emerald-400 font-bold"></span></p>
+        <p>Transaction ID: <span id="confirmedTx" class="text-white"></span></p>
+        <p>Status: <span class="text-amber-400 font-bold">Queued for Admin Approval</span></p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 text-xs text-gray-300 text-left space-y-2">
+        <p class="font-bold text-emerald-400 flex items-center gap-1.5">
+          <i data-lucide="info" class="w-4 h-4"></i>
+          <span>Next Steps:</span>
+        </p>
+        <ol class="list-decimal pl-4 space-y-1 text-gray-400">
+          <li><strong>Punit Pawar</strong> will verify your payment and approve your account.</li>
+          <li>Re-open Victor AI on your desktop — the Main Dashboard will unlock immediately!</li>
+        </ol>
+      </div>
+
+      <div class="flex gap-3">
+        <a href="https://whatsapp.com/channel/0029Vb966USJZg44yZcz6k0L" target="_blank" class="flex-1 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-black font-bold text-sm transition-all text-center">
+          Open WhatsApp Channel
+        </a>
+        <button onclick="closeSuccessModal()" class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm transition-all cursor-pointer">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { submitLifetimeOrder, checkUserApproval } from "./firebase-config.js";
+
+    window.copyText = function(text, label) {
+      navigator.clipboard.writeText(text);
+      showToast(label || 'Copied to clipboard!');
+    };
+
+    window.copyBankDetails = function() {
+      const details = "Account Holder: Punit Pawar\\nBank: State Bank of India\\nAccount No: 41029485721\\nIFSC Code: SBIN0001428";
+      navigator.clipboard.writeText(details);
+      showToast('All Bank Details copied!');
+    };
+
+    function showToast(msg) {
+      const toast = document.getElementById('copyToast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    window.handleOrderSubmit = async function(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.innerHTML;
+
+      const name = document.getElementById('buyerName').value.trim();
+      const email = document.getElementById('buyerEmail').value.trim().toLowerCase();
+      const whatsapp = document.getElementById('buyerWhatsapp').value.trim();
+      const transactionId = document.getElementById('transactionId').value.trim();
+
+      if (!name || !email || !whatsapp || !transactionId) {
+        showToast('Please fill all fields');
+        return;
+      }
+
+      try {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span class="animate-spin mr-2">⏳</span> Submitting to Firestore...`;
+
+        await submitLifetimeOrder({
+          name,
+          email,
+          whatsapp,
+          country: 'India',
+          paymentMethod: 'UPI / Direct Bank',
+          transactionId
+        });
+
+        document.getElementById('confirmedName').innerText = name;
+        document.getElementById('confirmedEmail').innerText = email;
+        document.getElementById('confirmedTx').innerText = transactionId;
+        document.getElementById('successModal').classList.remove('hidden');
+
+      } catch (err) {
+        console.error("Order submission failed:", err);
+        showToast('Submission failed: ' + (err.message || 'Check connection'));
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    };
+
+    window.closeSuccessModal = function() {
+      document.getElementById('successModal').classList.add('hidden');
+    };
+
+    window.handleCheckStatus = async function() {
+      const email = document.getElementById('checkEmailInput').value.trim().toLowerCase();
+      const resultDiv = document.getElementById('checkResult');
+      if (!email) {
+        showToast('Enter your Gmail to verify');
+        return;
+      }
+
+      resultDiv.classList.remove('hidden');
+      resultDiv.className = "text-xs p-3.5 rounded-xl bg-white/5 text-gray-300 font-mono";
+      resultDiv.innerText = "Querying Firestore...";
+
+      try {
+        const res = await checkUserApproval(email);
+        if (!res.found) {
+          resultDiv.className = "text-xs p-3.5 rounded-xl bg-amber-500/10 text-amber-300 border border-amber-500/20 font-mono";
+          resultDiv.innerHTML = `⚠️ No order found for <strong>${email}</strong>. Please complete payment and submit details above.`;
+        } else if (res.approved) {
+          resultDiv.className = "text-xs p-3.5 rounded-xl bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-mono";
+          resultDiv.innerHTML = `✅ <strong>APPROVED!</strong> Your account is activated for Lifetime Access. You can now launch Victor AI desktop app!`;
+        } else {
+          resultDiv.className = "text-xs p-3.5 rounded-xl bg-[#d4af37]/10 text-cyan-300 border border-cyan-500/20 font-mono";
+          resultDiv.innerHTML = `⏳ <strong>Pending Approval:</strong> Order received. Punit Pawar will approve your account shortly.`;
+        }
+      } catch (err) {
+        resultDiv.className = "text-xs p-3.5 rounded-xl bg-red-500/10 text-red-300 border border-red-500/20 font-mono";
+        resultDiv.innerText = "Error: " + err.message;
+      }
+    };
+  </script>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

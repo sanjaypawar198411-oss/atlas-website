@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Victor AI</title>
+  <link rel="icon" type="image/png" href="./assets/images/logo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            stonic: {
+              bg: '#05070a',
+              card: '#0c1017',
+              border: '#1a2333',
+              emerald: '#10b981',
+              cyan: '#06b6d4',
+              accent: '#3b82f6',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #05070a;
+      color: #e2e8f0;
+    }
+    .glass-panel {
+      background: rgba(12, 16, 23, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-emerald-500/20 selection:text-emerald-400">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-50 glass-panel border-b border-white/[0.08]">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="./assets/images/logo_withoutbackground.png" alt="Victor AI Logo" class="w-10 h-10 object-contain drop-shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+        <div>
+          <span class="font-display font-bold text-xl tracking-tight text-white group-hover:text-emerald-400 transition-colors">VICTOR AI</span>
+          <span class="block text-[9px] uppercase tracking-widest text-emerald-500 font-mono font-semibold">Desktop OS</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+        <a href="index.html#features" class="hover:text-white transition-colors">Features</a>
+        <a href="index.html#pricing" class="hover:text-white transition-colors">Pricing</a>
+        <a href="download.html" class="hover:text-white transition-colors">Download</a>
+        <a href="terms.html" class="hover:text-white transition-colors">Terms</a>
+        <a href="privacy.html" class="text-emerald-400 font-semibold">Privacy</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="checkout.html" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] active:scale-95 flex items-center gap-2">
+          <span>Get Lifetime</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="max-w-4xl mx-auto px-6 py-16 space-y-12">
+    <div class="space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium">
+        <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+        <span>ZERO-TELEMETRY & SECURITY</span>
+      </div>
+      <h1 class="font-display text-4xl md:text-5xl font-extrabold text-white tracking-tight">Privacy Policy</h1>
+      <p class="text-gray-400 text-base">Last Updated: September 2026 • Local-First Architecture • Created by Punit Pawar</p>
+    </div>
+
+    <div class="glass-panel p-8 md:p-10 rounded-3xl space-y-8 text-gray-300 leading-relaxed text-sm md:text-base border border-white/10">
+      
+      <section class="space-y-3">
+        <h2 class="font-display text-xl font-bold text-white flex items-center gap-2.5">
+          <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+          <span>1. Our Core Principle: Local-First Privacy</span>
+        </h2>
+        <p>
+          Unlike conventional cloud AI platforms that record, store, and train on your proprietary workflows, <strong>Victor AI is engineered as a local-first desktop application</strong>. 
+        </p>
+        <p>
+          Your conversation history, voice audio, persona files (<code>SOUL.md</code>), long-term memories (<code>MEMORY.md</code>), documents, screenshots, and agent execution logs remain strictly on your local computer at all times.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="font-display text-xl font-bold text-white flex items-center gap-2.5">
+          <i data-lucide="cpu" class="w-5 h-5 text-emerald-400"></i>
+          <span>2. Hardware-Level API Key Encryption (DPAPI)</span>
+        </h2>
+        <p>
+          Because Victor AI uses a Bring Your Own Key (BYOK) model, your API keys represent your own financial budget. To guarantee total security:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-gray-300">
+          <li>All provider API keys (Google Gemini, OpenRouter, Groq, OpenAI) are encrypted using <strong>Windows DPAPI (Data Protection API)</strong> via Electron's <code>safeStorage</code>.</li>
+          <li>Your keys are tied directly to your Windows user account hardware fingerprint and cannot be read by other accounts, external processes, or unauthorized machines.</li>
+          <li>Victor AI never transmits your API keys to our servers. They are communicated strictly via encrypted TLS/HTTPS directly to your chosen AI model endpoint.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="font-display text-xl font-bold text-white flex items-center gap-2.5">
+          <i data-lucide="database" class="w-5 h-5 text-emerald-400"></i>
+          <span>3. What Information We Collect (Account Licensing Only)</span>
+        </h2>
+        <p>
+          We collect only the bare minimum information necessary to issue, verify, and maintain your Lifetime software license:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] space-y-1">
+            <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-semibold">Registration Data</span>
+            <p class="text-sm text-gray-300">Your Full Name, Gmail address, WhatsApp number, and Country entered during checkout.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] space-y-1">
+            <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-semibold">Order Information</span>
+            <p class="text-sm text-gray-300">Transaction ID / payment reference number to verify your one-time lifetime license payment.</p>
+          </div>
+        </div>
+        <p class="text-sm text-gray-400 pt-2">
+          This licensing information is securely stored in our managed Google Firebase Firestore database (<code>vision-f1e0d</code>) and is accessed solely to grant and verify authorization for your account.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="font-display text-xl font-bold text-white flex items-center gap-2.5">
+          <i data-lucide="eye-off" class="w-5 h-5 text-emerald-400"></i>
+          <span>4. What We NEVER Collect</span>
+        </h2>
+        <div class="p-5 rounded-2xl bg-red-500/5 border border-red-500/20 space-y-2">
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li class="flex items-center gap-2">
+              <i data-lucide="x-circle" class="w-4 h-4 text-red-400 shrink-0"></i>
+              <span>We NEVER collect your chats, prompts, voice recordings, or LLM responses.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="x-circle" class="w-4 h-4 text-red-400 shrink-0"></i>
+              <span>We NEVER collect desktop screenshots taken during Computer Control automation.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="x-circle" class="w-4 h-4 text-red-400 shrink-0"></i>
+              <span>We NEVER sell, trade, or share your contact info with third-party advertisers.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="font-display text-xl font-bold text-white flex items-center gap-2.5">
+          <i data-lucide="trash-2" class="w-5 h-5 text-emerald-400"></i>
+          <span>5. Data Retention & Deletion</span>
+        </h2>
+        <p>
+          You have full sovereignty over your local data. To erase all local chats, memories, and configurations, simply delete the <code>Documents/Victor AI Data</code> directory on your PC. 
+        </p>
+        <p>
+          To request complete deletion of your account record and registration data from our cloud Firestore database, you can contact <strong>Punit Pawar</strong> at any time.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="font-display text-xl font-bold text-white flex items-center gap-2.5">
+          <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i>
+          <span>6. Contact Us</span>
+        </h2>
+        <p>
+          If you have questions regarding this Privacy Policy or your data rights, contact:
+        </p>
+        <p class="font-mono text-sm text-emerald-400">Creator & Lead Architect: Punit Pawar (India) • Email: privacy@victorai.com</p>
+      </section>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex items-center justify-between pt-6 border-t border-white/[0.08]">
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Back to Home</span>
+      </a>
+      <a href="terms.html" class="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors">
+        <span>Read Terms of Service</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="glass-panel border-t border-white/[0.08] py-8 text-center text-xs text-gray-500 mt-20">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© 2026 Victor AI. All Rights Reserved. Created by <strong>Punit Pawar</strong>.</p>
+      <div class="flex items-center gap-6">
+        <a href="terms.html" class="hover:text-gray-300">Terms</a>
+        <a href="privacy.html" class="hover:text-gray-300">Privacy</a>
+        <a href="download.html" class="hover:text-gray-300">Download</a>
+        <a href="checkout.html" class="text-emerald-400 hover:underline">Get Lifetime</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
