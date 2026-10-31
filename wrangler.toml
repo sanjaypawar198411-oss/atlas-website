@@ -1,0 +1,7 @@
+name = "victor-ai"
+main = "worker.js"
+compatibility_date = "2024-10-31"
+
+[assets]
+directory = "."
+binding = "ASSETS"

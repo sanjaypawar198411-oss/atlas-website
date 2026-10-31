@@ -1,22 +1,12 @@
 {
-  "name": "stonicai-clone",
+  "name": "victor-ai",
   "version": "1.0.0",
-  "description": "Exact clone of Victor AI (victorai.com) website",
-  "main": "server.js",
+  "description": "Stark Industries Victor AI Website",
+  "private": true,
   "scripts": {
-    "start": "node server.js"
+    "deploy": "wrangler deploy"
   },
-  "keywords": [
-    "stonic",
-    "ai",
-    "jarvis",
-    "clone",
-    "website"
-  ],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "puppeteer-core": "^25.12.0",
-    "sharp": "^0.35.5"
+  "devDependencies": {
+    "wrangler": "^3.80.0"
   }
 }
