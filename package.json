@@ -1,12 +1,5 @@
 {
   "name": "victor-ai",
   "version": "1.0.0",
-  "description": "Stark Industries Victor AI Website",
-  "private": true,
-  "scripts": {
-    "deploy": "wrangler deploy"
-  },
-  "devDependencies": {
-    "wrangler": "^3.80.0"
-  }
+  "private": true
 }
