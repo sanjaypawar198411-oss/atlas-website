@@ -1,8 +1,8 @@
 version: 3.1.19
 files:
   - url: Victor-AI-Setup-3.1.19.exe
-    sha512: 658a40643fd59465f6dfbc76a01720de8de38e407c3eb42ac57429369a92be3ab955c9735a21c5a438a3581b7fae4bb1cc432849a88dc3a7dd5cce79b72a5f2b
-    size: 1136909922
+    sha512: p47GiJN6eiVo+ifS1ehT7gCHQBAQTsZxq889bUlAWdCTMPWGgKh8iXFjzqzHzoiSJgsMQECtdH5YVXjrk2o2xA==
+    size: 1136910228
 path: Victor-AI-Setup-3.1.19.exe
-sha512: 658a40643fd59465f6dfbc76a01720de8de38e407c3eb42ac57429369a92be3ab955c9735a21c5a438a3581b7fae4bb1cc432849a88dc3a7dd5cce79b72a5f2b
-releaseDate: '2026-10-31T00:00:00.000Z'
+sha512: p47GiJN6eiVo+ifS1ehT7gCHQBAQTsZxq889bUlAWdCTMPWGgKh8iXFjzqzHzoiSJgsMQECtdH5YVXjrk2o2xA==
+releaseDate: '2026-11-01T04:30:00.000Z'
