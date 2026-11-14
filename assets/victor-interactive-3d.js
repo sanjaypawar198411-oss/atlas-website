@@ -1,19 +1,20 @@
 /**
  * VICTOR AI - AWWWARDS-TIER 3D INTERACTIVE EXPERIENCE
+ * THEME: COSMIC AURORA (ELECTRIC HYPER-CYAN & COSMIC PLASMA VIOLET)
  * Features:
- * 1. 3D Interactive Liquid Gold Wave & Neural Mesh (WebGL/Canvas)
- * 2. Real-time Cursor Disturbance & Ripple Physics
- * 3. 3D Floating Golden Embers & Stardust
- * 4. Interactive 24K Gold Ambient Cursor Spotlight
- * 5. 3D Card Perspective Tilt & Metallic Specular Glare
- * 6. Interactive Click Energy Shockwaves & Particle Bursts
- * 7. Live Audio-Reactive Quantum Equalizer in Hero
+ * 1. 3D Interactive Prismatic Wave & Neural Mesh (WebGL/Canvas)
+ * 2. Dual-Spectrum Color Flow (Electric Cyan -> Plasma Violet -> Neon Magenta)
+ * 3. Real-time Cursor Disturbance & Ripple Physics
+ * 4. 3D Floating Dual-Color Embers & Stardust
+ * 5. Interactive Prismatic Cursor Spotlight
+ * 6. 3D Card Perspective Tilt & Aurora Specular Glare
+ * 7. Interactive Click Energy Shockwaves & Spark Bursts
+ * 8. Live Audio-Reactive Quantum Equalizer in Hero
  */
 
 (function () {
   'use strict';
 
-  // Wait for DOM to be ready
   function init() {
     setupBackgroundCanvas();
     setupCursorSpotlight();
@@ -23,10 +24,9 @@
   }
 
   /* ==============================================================
-     1. 3D INTERACTIVE LIQUID GOLD WAVE & NEURAL PARTICLE SYSTEM
+     1. 3D INTERACTIVE PRISMATIC WAVE & NEURAL PARTICLE SYSTEM
      ============================================================== */
   function setupBackgroundCanvas() {
-    // Check if canvas already exists
     let canvas = document.getElementById('victor-3d-canvas');
     if (!canvas) {
       canvas = document.createElement('canvas');
@@ -37,8 +37,8 @@
       canvas.style.width = '100vw';
       canvas.style.height = '100vh';
       canvas.style.pointerEvents = 'none';
-      canvas.style.zIndex = '0'; // Behind content, above base bg
-      canvas.style.opacity = '0.95';
+      canvas.style.zIndex = '0';
+      canvas.style.opacity = '0.98';
       document.body.prepend(canvas);
     }
 
@@ -46,9 +46,7 @@
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Mouse coordinates with smooth damping
     let mouse = { x: width * 0.5, y: height * 0.4, vx: 0, vy: 0, targetX: width * 0.5, targetY: height * 0.4 };
-    let lastMouse = { x: mouse.x, y: mouse.y };
 
     window.addEventListener('mousemove', (e) => {
       mouse.targetX = e.clientX;
@@ -76,7 +74,6 @@
             origX: (c - COLS / 2) * SPACING_X,
             origZ: r * SPACING_Z + 120,
             y: 0,
-            vy: 0,
             r: r,
             c: c,
           });
@@ -85,25 +82,26 @@
     }
     initGrid();
 
-    // 3D Floating Gold Embers
-    const EMBER_COUNT = 75;
+    // 3D Floating Dual-Color Embers (Cyan & Violet)
+    const EMBER_COUNT = 85;
     const embers = [];
     for (let i = 0; i < EMBER_COUNT; i++) {
+      const isCyan = Math.random() > 0.45;
       embers.push({
-        x: (Math.random() - 0.5) * width * 1.4,
+        x: (Math.random() - 0.5) * width * 1.5,
         y: Math.random() * height * 1.2,
         z: Math.random() * 800 + 100,
-        size: Math.random() * 2.4 + 1.0,
+        size: Math.random() * 2.5 + 1.0,
         speedY: -(Math.random() * 0.6 + 0.2),
         speedX: (Math.random() - 0.5) * 0.4,
-        hue: Math.random() > 0.4 ? 'rgba(255, 215, 0,' : 'rgba(212, 175, 55,',
-        alpha: Math.random() * 0.6 + 0.3,
+        color: isCyan ? 'rgba(0, 245, 255,' : 'rgba(168, 85, 247,',
+        glowColor: isCyan ? '#00f5ff' : '#a855f7',
+        alpha: Math.random() * 0.65 + 0.35,
         pulseSpeed: Math.random() * 0.04 + 0.02,
         pulseOffset: Math.random() * Math.PI * 2,
       });
     }
 
-    // Animation Loop
     let time = 0;
     const FOV = 420;
 
@@ -111,7 +109,6 @@
       requestAnimationFrame(render);
       time += 0.024;
 
-      // Mouse Lerp
       mouse.vx = (mouse.targetX - mouse.x) * 0.07;
       mouse.vy = (mouse.targetY - mouse.y) * 0.07;
       mouse.x += mouse.vx;
@@ -122,32 +119,28 @@
       const centerX = width * 0.5 + (mouse.x - width * 0.5) * 0.08;
       const centerY = height * 0.62 + (mouse.y - height * 0.5) * 0.05;
 
-      // Calculate Wave Heights & Mouse Disturbance
       const mouseGridDistX = mouse.x - width * 0.5;
       const mouseGridDistY = mouse.y - height * 0.6;
 
       for (let i = 0; i < grid.length; i++) {
         const pt = grid[i];
 
-        // Harmonic organic multi-frequency waves
         const wave1 = Math.sin(pt.origX * 0.007 + time * 1.6) * Math.cos(pt.origZ * 0.009 + time * 1.2) * 32;
         const wave2 = Math.sin(pt.origX * 0.003 - time * 0.8) * 18;
         const wave3 = Math.cos(pt.origZ * 0.006 + time * 1.0) * 14;
 
-        // Interactive Mouse Wave disturbance
         const dx = pt.origX - mouseGridDistX * 1.2;
         const dz = pt.origZ - (mouseGridDistY * 0.8 + 300);
         const dist = Math.sqrt(dx * dx + dz * dz);
         let mouseDisplacement = 0;
         if (dist < 260) {
           const factor = (1 - dist / 260);
-          mouseDisplacement = Math.sin(dist * 0.06 - time * 6) * factor * 48;
+          mouseDisplacement = Math.sin(dist * 0.06 - time * 6) * factor * 52;
         }
 
         pt.y = wave1 + wave2 + wave3 + mouseDisplacement;
       }
 
-      // Draw 3D Perspective Lines & Glowing Nodes
       ctx.lineWidth = 1;
 
       for (let r = 0; r < ROWS; r++) {
@@ -173,13 +166,16 @@
           }
         }
 
-        // Gradient color along depth
         const depthAlpha = Math.max(0.04, Math.min(0.38, 1 - r / ROWS));
-        ctx.strokeStyle = `rgba(212, 175, 55, ${depthAlpha * 0.65})`;
+        const lineGrad = ctx.createLinearGradient(0, 0, width, 0);
+        lineGrad.addColorStop(0, `rgba(0, 245, 255, ${depthAlpha * 0.7})`);
+        lineGrad.addColorStop(0.5, `rgba(168, 85, 247, ${depthAlpha * 0.65})`);
+        lineGrad.addColorStop(1, `rgba(236, 72, 153, ${depthAlpha * 0.7})`);
+
+        ctx.strokeStyle = lineGrad;
         ctx.stroke();
       }
 
-      // Draw Grid Nodes (Particles) with Specular Gold Core
       for (let i = 0; i < grid.length; i += 2) {
         const pt = grid[i];
         const scale = FOV / (FOV + pt.origZ);
@@ -188,29 +184,37 @@
 
         if (px >= 0 && px <= width && py >= 0 && py <= height) {
           const distToMouse = Math.hypot(px - mouse.x, py - mouse.y);
-          const isNearMouse = distToMouse < 180;
-          const nodeRadius = (isNearMouse ? 2.8 : 1.4) * scale;
-          const alpha = (isNearMouse ? 0.95 : 0.45) * Math.min(1, scale * 1.5);
+          const isNearMouse = distToMouse < 190;
+          const nodeRadius = (isNearMouse ? 3.0 : 1.3) * scale;
+          const alpha = (isNearMouse ? 0.98 : 0.45) * Math.min(1, scale * 1.5);
+
+          const colRatio = pt.c / COLS;
+          let nodeColor;
+          if (isNearMouse) {
+            nodeColor = `rgba(255, 255, 255, ${alpha})`;
+          } else if (colRatio < 0.4) {
+            nodeColor = `rgba(0, 245, 255, ${alpha * 0.8})`;
+          } else if (colRatio < 0.7) {
+            nodeColor = `rgba(168, 85, 247, ${alpha * 0.8})`;
+          } else {
+            nodeColor = `rgba(236, 72, 153, ${alpha * 0.8})`;
+          }
 
           ctx.beginPath();
           ctx.arc(px, py, Math.max(0.6, nodeRadius), 0, Math.PI * 2);
-          ctx.fillStyle = isNearMouse
-            ? `rgba(255, 235, 130, ${alpha})`
-            : `rgba(212, 175, 55, ${alpha * 0.75})`;
+          ctx.fillStyle = nodeColor;
           ctx.fill();
 
-          // Mouse proximity laser connections
-          if (isNearMouse && distToMouse < 90) {
+          if (isNearMouse && distToMouse < 100) {
             ctx.beginPath();
             ctx.moveTo(px, py);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(255, 215, 0, ${(1 - distToMouse / 90) * 0.25})`;
+            ctx.strokeStyle = `rgba(0, 245, 255, ${(1 - distToMouse / 100) * 0.35})`;
             ctx.stroke();
           }
         }
       }
 
-      // Render Floating 3D Embers
       for (let i = 0; i < embers.length; i++) {
         const em = embers[i];
         em.y += em.speedY;
@@ -226,8 +230,8 @@
 
         ctx.beginPath();
         ctx.arc(emPx, emPy, em.size * emScale * pulse, 0, Math.PI * 2);
-        ctx.fillStyle = `${em.hue} ${em.alpha * pulse})`;
-        ctx.shadowColor = '#ffd700';
+        ctx.fillStyle = `${em.color} ${em.alpha * pulse})`;
+        ctx.shadowColor = em.glowColor;
         ctx.shadowBlur = 8;
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -238,7 +242,7 @@
   }
 
   /* ==============================================================
-     2. DYNAMIC 24K GOLD CURSOR AMBIENT SPOTLIGHT
+     2. DYNAMIC PRISMATIC CURSOR SPOTLIGHT
      ============================================================== */
   function setupCursorSpotlight() {
     let spotlight = document.getElementById('victor-cursor-spotlight');
@@ -248,12 +252,12 @@
       spotlight.style.position = 'fixed';
       spotlight.style.top = '0';
       spotlight.style.left = '0';
-      spotlight.style.width = '680px';
-      spotlight.style.height = '680px';
+      spotlight.style.width = '720px';
+      spotlight.style.height = '720px';
       spotlight.style.borderRadius = '50%';
       spotlight.style.pointerEvents = 'none';
       spotlight.style.zIndex = '1';
-      spotlight.style.background = 'radial-gradient(circle at center, rgba(255, 215, 0, 0.16) 0%, rgba(212, 175, 55, 0.08) 35%, transparent 70%)';
+      spotlight.style.background = 'radial-gradient(circle at center, rgba(0, 245, 255, 0.16) 0%, rgba(168, 85, 247, 0.09) 40%, transparent 70%)';
       spotlight.style.transform = 'translate(-50%, -50%) translate3d(-999px, -999px, 0)';
       spotlight.style.transition = 'opacity 0.4s ease';
       spotlight.style.mixBlendMode = 'screen';
@@ -278,7 +282,7 @@
   }
 
   /* ==============================================================
-     3. 3D CARD PERSPECTIVE TILT WITH METALLIC SPECULAR SHEEN
+     3. 3D CARD PERSPECTIVE TILT WITH NEON AURORA REFLECTION
      ============================================================== */
   function setup3DCardTilt() {
     const cardSelectors = [
@@ -294,7 +298,6 @@
       const cards = document.querySelectorAll(cardSelectors.join(','));
 
       cards.forEach((card) => {
-        // Prevent duplicate listener
         if (card.dataset.tiltApplied) return;
         card.dataset.tiltApplied = 'true';
 
@@ -309,11 +312,11 @@
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
 
-          const rotateX = ((y - centerY) / centerY) * -6.5; // Max 6.5 deg tilt
+          const rotateX = ((y - centerY) / centerY) * -6.5;
           const rotateY = ((x - centerX) / centerX) * 6.5;
 
           card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(8px)`;
-          card.style.boxShadow = `0 20px 45px -12px rgba(212, 175, 55, 0.35), 0 0 25px -4px rgba(255, 215, 0, 0.25)`;
+          card.style.boxShadow = `0 20px 45px -12px rgba(0, 245, 255, 0.35), 0 0 25px -4px rgba(168, 85, 247, 0.25)`;
         });
 
         card.addEventListener('mouseleave', () => {
@@ -324,21 +327,18 @@
     }
 
     applyTilt();
-    // Re-check for dynamically rendered elements
     setInterval(applyTilt, 2000);
   }
 
   /* ==============================================================
-     4. CLICK ENERGY SHOCKWAVE & GOLDEN SPARK EXPLOSION
+     4. CLICK ENERGY SHOCKWAVE & NEON SPARK EXPLOSION
      ============================================================== */
   function setupClickShockwave() {
     window.addEventListener('click', (e) => {
-      // Don't trigger if clicked on link/input/button directly (or still show subtle burst)
       createShockwave(e.clientX, e.clientY);
     });
 
     function createShockwave(x, y) {
-      // 1. Expanding Holographic Ring
       const ring = document.createElement('div');
       ring.style.position = 'fixed';
       ring.style.left = `${x}px`;
@@ -346,8 +346,8 @@
       ring.style.width = '20px';
       ring.style.height = '20px';
       ring.style.borderRadius = '50%';
-      ring.style.border = '2px solid #ffd700';
-      ring.style.boxShadow = '0 0 20px #ffd700, inset 0 0 15px #d4af37';
+      ring.style.border = '2px solid #00f5ff';
+      ring.style.boxShadow = '0 0 25px #00f5ff, inset 0 0 15px #a855f7';
       ring.style.transform = 'translate(-50%, -50%) scale(1)';
       ring.style.pointerEvents = 'none';
       ring.style.zIndex = '99999';
@@ -361,7 +361,6 @@
 
       setTimeout(() => ring.remove(), 700);
 
-      // 2. Bursting Golden Sparks
       const sparkCount = 14;
       for (let i = 0; i < sparkCount; i++) {
         const spark = document.createElement('div');
@@ -376,8 +375,8 @@
         spark.style.width = `${Math.random() * 4 + 3}px`;
         spark.style.height = spark.style.width;
         spark.style.borderRadius = '50%';
-        spark.style.backgroundColor = Math.random() > 0.3 ? '#ffd700' : '#ffffff';
-        spark.style.boxShadow = '0 0 10px #ffd700';
+        spark.style.backgroundColor = Math.random() > 0.5 ? '#00f5ff' : '#a855f7';
+        spark.style.boxShadow = '0 0 10px #00f5ff';
         spark.style.pointerEvents = 'none';
         spark.style.zIndex = '99999';
         spark.style.transform = 'translate(-50%, -50%) scale(1)';
@@ -398,7 +397,6 @@
      5. HERO INTERACTIVE 3D CORE GYROSCOPE & AUDIO EQUALIZER
      ============================================================== */
   function setupHeroInteractiveCore() {
-    // Find the hero central aspect-square avatar container
     const heroCore = document.querySelector('.aspect-square');
     if (heroCore) {
       window.addEventListener('mousemove', (e) => {
@@ -419,7 +417,6 @@
       });
     }
 
-    // Interactive Audio Equalizer Bar
     let eqContainer = document.getElementById('victor-live-equalizer');
     if (!eqContainer) {
       const heroSection = document.querySelector('section[aria-label="Hero Introduction"]') || document.querySelector('main');
@@ -435,22 +432,20 @@
         eqContainer.style.cursor = 'pointer';
         eqContainer.title = 'Victor AI Live Neural Voice Core - Interactive';
 
-        // 18 equalizer bars
         for (let i = 0; i < 22; i++) {
           const bar = document.createElement('div');
           bar.className = 'eq-bar';
           bar.style.width = '3.5px';
           bar.style.height = '14px';
           bar.style.borderRadius = '3px';
-          bar.style.background = 'linear-gradient(180deg, #ffd700 0%, #b8860b 100%)';
-          bar.style.boxShadow = '0 0 8px rgba(255, 215, 0, 0.4)';
+          bar.style.background = 'linear-gradient(180deg, #00f5ff 0%, #8b5cf6 50%, #ec4899 100%)';
+          bar.style.boxShadow = '0 0 8px rgba(0, 245, 255, 0.45)';
           bar.style.transition = 'height 0.08s ease';
           eqContainer.appendChild(bar);
         }
 
-        // Add live status pill
         const statusPill = document.createElement('div');
-        statusPill.innerHTML = '<span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#ffd700; margin-right:6px; box-shadow:0 0 10px #ffd700; animation:pulse 1.5s infinite;"></span><span style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#ffd700;">NEURAL 3D CORE ACTIVE</span>';
+        statusPill.innerHTML = '<span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#00f5ff; margin-right:6px; box-shadow:0 0 10px #00f5ff; animation:pulse 1.5s infinite;"></span><span style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#00f5ff;">NEURAL 3D CORE ACTIVE</span>';
         statusPill.style.display = 'flex';
         statusPill.style.alignItems = 'center';
         statusPill.style.justifyContent = 'center';
@@ -465,11 +460,9 @@
         wrapper.appendChild(eqContainer);
         wrapper.appendChild(statusPill);
 
-        // Insert after hero heading or under core
         const heroContainer = heroSection.querySelector('.container') || heroSection;
         heroContainer.prepend(wrapper);
 
-        // Animate Equalizer Bars with audio-like sine pulses + mouse speed reaction
         let eqTime = 0;
         let mouseSpeed = 0;
         let lastX = 0, lastY = 0;
@@ -484,7 +477,7 @@
 
         function animateEq() {
           eqTime += 0.08;
-          mouseSpeed *= 0.94; // damping
+          mouseSpeed *= 0.94;
           const bars = eqContainer.querySelectorAll('.eq-bar');
           bars.forEach((bar, idx) => {
             const freq = Math.sin(eqTime * 2.2 + idx * 0.38) * 0.5 + 0.5;
@@ -500,7 +493,6 @@
     }
   }
 
-  // Run when document is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
