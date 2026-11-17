@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="starkCyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <filter id="hudGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Outer HUD Targeting Ring -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="url(#starkCyanGlow)" stroke-width="6" opacity="0.6" stroke-dasharray="16 8 4 8" />
+  <circle cx="256" cy="256" r="216" fill="rgba(2, 6, 16, 0.75)" stroke="#00f0ff" stroke-width="4" opacity="0.9" />
+  
+  <!-- Outer Arrow Accent Path (The iconic wrap-around element) -->
+  <path fill="url(#starkCyanGlow)" filter="url(#hudGlow)" d="M394.5 359.8L256 396.4 117.5 359.8l17.8-49.3 103.5 27.2 17.2-4.8v-39.7l-71.5-207.2h57.4l45.4 136.1 45.3-136.1h57.5l-71.5 207.2v39.7l17.2 4.8 103.5-27.2 17.8 49.3z" />
+  
+  <!-- Avengers Main 'A' Symbol -->
+  <path fill="#ffffff" d="M363.5 319.7l-30.8-88.4h-155.4l-30.2 88.4H98l97.6-261.4h61.2l98.3 261.4h-51.6zm-107.4-177.6l-50.6 145.4h102l-51.4-145.4z" />
+</svg>

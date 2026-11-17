@@ -1,44 +1,42 @@
 /**
- * VICTOR AI - AWWWARDS-TIER 3D INTERACTIVE EXPERIENCE
- * THEME: COSMIC AURORA (ELECTRIC HYPER-CYAN & COSMIC PLASMA VIOLET)
- * Features:
- * 1. 3D Interactive Prismatic Wave & Neural Mesh (WebGL/Canvas)
- * 2. Dual-Spectrum Color Flow (Electric Cyan -> Plasma Violet -> Neon Magenta)
- * 3. Real-time Cursor Disturbance & Ripple Physics
- * 4. 3D Floating Dual-Color Embers & Stardust
- * 5. Interactive Prismatic Cursor Spotlight
- * 6. 3D Card Perspective Tilt & Aurora Specular Glare
- * 7. Interactive Click Energy Shockwaves & Spark Bursts
- * 8. Live Audio-Reactive Quantum Equalizer in Hero
+ * STARK INDUSTRIES // AVENGERS INITIATIVE // VICTOR AI 3D SPACE ENGINE
+ * - 3D Deep Space Starfield with Real-time Parallax & Nebula
+ * - Periodic Shooting Stars / Cosmic Meteors
+ * - Dynamic Constellation Lines Near Cursor
+ * - Stark Industries Hologram Logo Enhancer & Arc Reactor HUD
+ * - Avengers Tactical Telemetry HUD Bar
+ * - Web Audio API High-Tech Sound Synthesizer (Zero External Audio Files)
+ * - 3D Card Perspective Tilt & Cyan Specular Glare
  */
 
 (function () {
   'use strict';
 
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
   function init() {
-    setupBackgroundCanvas();
-    setupCursorSpotlight();
+    setupDeepSpaceCanvas();
+    setupAvengersHudBar();
+    setupStarkLogoEnhancements();
     setup3DCardTilt();
-    setupClickShockwave();
-    setupHeroInteractiveCore();
+    setupAvengersAudio();
+    setupClickShockwaves();
+    setupHeroArcReactor();
   }
 
   /* ==============================================================
-     1. 3D INTERACTIVE PRISMATIC WAVE & NEURAL PARTICLE SYSTEM
+     1. 3D INTERACTIVE DEEP SPACE CANVAS (STARS, NEBULA, METEORS)
      ============================================================== */
-  function setupBackgroundCanvas() {
+  function setupDeepSpaceCanvas() {
     let canvas = document.getElementById('victor-3d-canvas');
     if (!canvas) {
       canvas = document.createElement('canvas');
       canvas.id = 'victor-3d-canvas';
-      canvas.style.position = 'fixed';
-      canvas.style.top = '0';
-      canvas.style.left = '0';
-      canvas.style.width = '100vw';
-      canvas.style.height = '100vh';
-      canvas.style.pointerEvents = 'none';
-      canvas.style.zIndex = '0';
-      canvas.style.opacity = '0.98';
       document.body.prepend(canvas);
     }
 
@@ -46,456 +44,430 @@
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    let mouse = { x: width * 0.5, y: height * 0.4, vx: 0, vy: 0, targetX: width * 0.5, targetY: height * 0.4 };
+    let mouse = {
+      x: width * 0.5,
+      y: height * 0.5,
+      targetX: width * 0.5,
+      targetY: height * 0.5,
+      tiltX: 0,
+      tiltY: 0
+    };
 
     window.addEventListener('mousemove', (e) => {
       mouse.targetX = e.clientX;
       mouse.targetY = e.clientY;
-    });
+    }, { passive: true });
 
     window.addEventListener('resize', () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      initGrid();
-    });
+      initStars();
+    }, { passive: true });
 
-    // 3D Perspective Wave Grid Setup
-    const COLS = Math.min(55, Math.floor(width / 26));
-    const ROWS = 38;
-    const SPACING_X = Math.max(30, width / (COLS - 1));
-    const SPACING_Z = 32;
-    let grid = [];
+    // Starfield Setup
+    const STAR_COUNT = Math.min(480, Math.floor((width * height) / 2800));
+    let stars = [];
 
-    function initGrid() {
-      grid = [];
-      for (let r = 0; r < ROWS; r++) {
-        for (let c = 0; c < COLS; c++) {
-          grid.push({
-            origX: (c - COLS / 2) * SPACING_X,
-            origZ: r * SPACING_Z + 120,
-            y: 0,
-            r: r,
-            c: c,
-          });
-        }
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < STAR_COUNT; i++) {
+        stars.push({
+          x: (Math.random() - 0.5) * width * 2,
+          y: (Math.random() - 0.5) * height * 2,
+          z: Math.random() * 1000 + 1,
+          size: Math.random() * 1.6 + 0.6,
+          baseAlpha: Math.random() * 0.6 + 0.4,
+          twinkleSpeed: Math.random() * 0.04 + 0.01,
+          twinklePhase: Math.random() * Math.PI * 2,
+          colorType: Math.random() < 0.35 ? 'cyan' : (Math.random() < 0.15 ? 'gold' : 'white')
+        });
       }
     }
-    initGrid();
+    initStars();
 
-    // 3D Floating Dual-Color Embers (Cyan & Violet)
-    const EMBER_COUNT = 85;
-    const embers = [];
-    for (let i = 0; i < EMBER_COUNT; i++) {
-      const isCyan = Math.random() > 0.45;
-      embers.push({
-        x: (Math.random() - 0.5) * width * 1.5,
-        y: Math.random() * height * 1.2,
-        z: Math.random() * 800 + 100,
-        size: Math.random() * 2.5 + 1.0,
-        speedY: -(Math.random() * 0.6 + 0.2),
-        speedX: (Math.random() - 0.5) * 0.4,
-        color: isCyan ? 'rgba(0, 245, 255,' : 'rgba(168, 85, 247,',
-        glowColor: isCyan ? '#00f5ff' : '#a855f7',
-        alpha: Math.random() * 0.65 + 0.35,
-        pulseSpeed: Math.random() * 0.04 + 0.02,
-        pulseOffset: Math.random() * Math.PI * 2,
+    // Shooting Stars / Meteors
+    let meteors = [];
+    function spawnMeteor() {
+      meteors.push({
+        x: Math.random() * width * 0.9,
+        y: Math.random() * height * 0.4,
+        length: Math.random() * 120 + 80,
+        speed: Math.random() * 14 + 10,
+        angle: (Math.PI / 4) + (Math.random() * 0.3 - 0.15),
+        alpha: 1,
+        life: 1,
+        decay: Math.random() * 0.02 + 0.015
       });
     }
 
-    let time = 0;
-    const FOV = 420;
+    let meteorTimer = 0;
 
-    function render() {
-      requestAnimationFrame(render);
-      time += 0.024;
+    let lastTime = performance.now();
 
-      mouse.vx = (mouse.targetX - mouse.x) * 0.07;
-      mouse.vy = (mouse.targetY - mouse.y) * 0.07;
-      mouse.x += mouse.vx;
-      mouse.y += mouse.vy;
+    function render(now) {
+      const dt = Math.min(32, now - lastTime) * 0.001;
+      lastTime = now;
 
-      ctx.clearRect(0, 0, width, height);
+      // Smooth mouse follow for 3D camera parallax
+      mouse.x += (mouse.targetX - mouse.x) * 0.04;
+      mouse.y += (mouse.targetY - mouse.y) * 0.04;
+      mouse.tiltX = ((mouse.x - width * 0.5) / (width * 0.5)) * 120;
+      mouse.tiltY = ((mouse.y - height * 0.5) / (height * 0.5)) * 120;
 
-      const centerX = width * 0.5 + (mouse.x - width * 0.5) * 0.08;
-      const centerY = height * 0.62 + (mouse.y - height * 0.5) * 0.05;
+      // Clear with deep cosmic black
+      ctx.fillStyle = '#02040a';
+      ctx.fillRect(0, 0, width, height);
 
-      const mouseGridDistX = mouse.x - width * 0.5;
-      const mouseGridDistY = mouse.y - height * 0.6;
+      // Render Cosmic Nebula Dust Glows
+      const grad1 = ctx.createRadialGradient(
+        width * 0.25 - mouse.tiltX * 0.2, height * 0.3 - mouse.tiltY * 0.2, 10,
+        width * 0.25 - mouse.tiltX * 0.2, height * 0.3 - mouse.tiltY * 0.2, width * 0.45
+      );
+      grad1.addColorStop(0, 'rgba(0, 240, 255, 0.055)');
+      grad1.addColorStop(0.5, 'rgba(2, 132, 199, 0.035)');
+      grad1.addColorStop(1, 'rgba(2, 4, 10, 0)');
+      ctx.fillStyle = grad1;
+      ctx.fillRect(0, 0, width, height);
 
-      for (let i = 0; i < grid.length; i++) {
-        const pt = grid[i];
+      const grad2 = ctx.createRadialGradient(
+        width * 0.8 - mouse.tiltX * 0.15, height * 0.7 - mouse.tiltY * 0.15, 10,
+        width * 0.8 - mouse.tiltX * 0.15, height * 0.7 - mouse.tiltY * 0.15, width * 0.5
+      );
+      grad2.addColorStop(0, 'rgba(251, 191, 36, 0.03)');
+      grad2.addColorStop(0.5, 'rgba(0, 240, 255, 0.025)');
+      grad2.addColorStop(1, 'rgba(2, 4, 10, 0)');
+      ctx.fillStyle = grad2;
+      ctx.fillRect(0, 0, width, height);
 
-        const wave1 = Math.sin(pt.origX * 0.007 + time * 1.6) * Math.cos(pt.origZ * 0.009 + time * 1.2) * 32;
-        const wave2 = Math.sin(pt.origX * 0.003 - time * 0.8) * 18;
-        const wave3 = Math.cos(pt.origZ * 0.006 + time * 1.0) * 14;
+      // Render and update 3D Stars
+      const cx = width * 0.5;
+      const cy = height * 0.5;
+      const visibleStars = [];
 
-        const dx = pt.origX - mouseGridDistX * 1.2;
-        const dz = pt.origZ - (mouseGridDistY * 0.8 + 300);
-        const dist = Math.sqrt(dx * dx + dz * dz);
-        let mouseDisplacement = 0;
-        if (dist < 260) {
-          const factor = (1 - dist / 260);
-          mouseDisplacement = Math.sin(dist * 0.06 - time * 6) * factor * 52;
+      for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+
+        // Move star forward slowly
+        star.z -= 0.6;
+        if (star.z <= 1) {
+          star.z = 1000;
+          star.x = (Math.random() - 0.5) * width * 2;
+          star.y = (Math.random() - 0.5) * height * 2;
         }
 
-        pt.y = wave1 + wave2 + wave3 + mouseDisplacement;
-      }
-
-      ctx.lineWidth = 1;
-
-      for (let r = 0; r < ROWS; r++) {
-        ctx.beginPath();
-        let rowStarted = false;
-
-        for (let c = 0; c < COLS; c++) {
-          const idx = r * COLS + c;
-          const pt = grid[idx];
-
-          const z = pt.origZ;
-          const scale = FOV / (FOV + z);
-          const px = pt.origX * scale + centerX;
-          const py = (pt.y + 60) * scale + centerY;
-
-          if (scale > 0 && px >= -100 && px <= width + 100) {
-            if (!rowStarted) {
-              ctx.moveTo(px, py);
-              rowStarted = true;
-            } else {
-              ctx.lineTo(px, py);
-            }
-          }
-        }
-
-        const depthAlpha = Math.max(0.04, Math.min(0.38, 1 - r / ROWS));
-        const lineGrad = ctx.createLinearGradient(0, 0, width, 0);
-        lineGrad.addColorStop(0, `rgba(0, 245, 255, ${depthAlpha * 0.7})`);
-        lineGrad.addColorStop(0.5, `rgba(168, 85, 247, ${depthAlpha * 0.65})`);
-        lineGrad.addColorStop(1, `rgba(236, 72, 153, ${depthAlpha * 0.7})`);
-
-        ctx.strokeStyle = lineGrad;
-        ctx.stroke();
-      }
-
-      for (let i = 0; i < grid.length; i += 2) {
-        const pt = grid[i];
-        const scale = FOV / (FOV + pt.origZ);
-        const px = pt.origX * scale + centerX;
-        const py = (pt.y + 60) * scale + centerY;
+        // Perspective 3D calculation
+        const px = (star.x - mouse.tiltX) * (400 / star.z) + cx;
+        const py = (star.y - mouse.tiltY) * (400 / star.z) + cy;
 
         if (px >= 0 && px <= width && py >= 0 && py <= height) {
-          const distToMouse = Math.hypot(px - mouse.x, py - mouse.y);
-          const isNearMouse = distToMouse < 190;
-          const nodeRadius = (isNearMouse ? 3.0 : 1.3) * scale;
-          const alpha = (isNearMouse ? 0.98 : 0.45) * Math.min(1, scale * 1.5);
-
-          const colRatio = pt.c / COLS;
-          let nodeColor;
-          if (isNearMouse) {
-            nodeColor = `rgba(255, 255, 255, ${alpha})`;
-          } else if (colRatio < 0.4) {
-            nodeColor = `rgba(0, 245, 255, ${alpha * 0.8})`;
-          } else if (colRatio < 0.7) {
-            nodeColor = `rgba(168, 85, 247, ${alpha * 0.8})`;
-          } else {
-            nodeColor = `rgba(236, 72, 153, ${alpha * 0.8})`;
-          }
+          star.twinklePhase += star.twinkleSpeed;
+          const twinkle = (Math.sin(star.twinklePhase) + 1) * 0.5;
+          const alpha = star.baseAlpha * (0.6 + 0.4 * twinkle) * (1 - star.z / 1000);
+          const r = star.size * (1 - star.z / 1000) * 1.8 + 0.4;
 
           ctx.beginPath();
-          ctx.arc(px, py, Math.max(0.6, nodeRadius), 0, Math.PI * 2);
-          ctx.fillStyle = nodeColor;
-          ctx.fill();
+          ctx.arc(px, py, r, 0, Math.PI * 2);
 
-          if (isNearMouse && distToMouse < 100) {
+          if (star.colorType === 'cyan') {
+            ctx.fillStyle = 'rgba(0, 240, 255, ' + alpha + ')';
+            ctx.shadowColor = '#00f0ff';
+            ctx.shadowBlur = r * 3;
+          } else if (star.colorType === 'gold') {
+            ctx.fillStyle = 'rgba(251, 191, 36, ' + alpha + ')';
+            ctx.shadowColor = '#fbbf24';
+            ctx.shadowBlur = r * 2;
+          } else {
+            ctx.fillStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+            ctx.shadowBlur = 0;
+          }
+
+          ctx.fill();
+          ctx.shadowBlur = 0;
+
+          // Store for constellation lines if close to cursor
+          const distToCursor = Math.hypot(px - mouse.x, py - mouse.y);
+          if (distToCursor < 180) {
+            visibleStars.push({ x: px, y: py, dist: distToCursor });
+          }
+        }
+      }
+
+      // Constellation Lines Near Cursor
+      for (let i = 0; i < visibleStars.length; i++) {
+        for (let j = i + 1; j < visibleStars.length; j++) {
+          const dx = visibleStars[i].x - visibleStars[j].x;
+          const dy = visibleStars[i].y - visibleStars[j].y;
+          const d = Math.hypot(dx, dy);
+          if (d < 85) {
+            const lineAlpha = (1 - d / 85) * 0.35;
             ctx.beginPath();
-            ctx.moveTo(px, py);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(0, 245, 255, ${(1 - distToMouse / 100) * 0.35})`;
+            ctx.moveTo(visibleStars[i].x, visibleStars[i].y);
+            ctx.lineTo(visibleStars[j].x, visibleStars[j].y);
+            ctx.strokeStyle = 'rgba(0, 240, 255, ' + lineAlpha + ')';
+            ctx.lineWidth = 0.8;
             ctx.stroke();
           }
         }
       }
 
-      for (let i = 0; i < embers.length; i++) {
-        const em = embers[i];
-        em.y += em.speedY;
-        em.x += em.speedX + (mouse.vx * 0.015);
-        if (em.y < -50) em.y = height + 50;
-        if (em.x < -width * 0.3) em.x = width * 1.3;
-        if (em.x > width * 1.3) em.x = -width * 0.3;
+      // Shooting Stars / Meteors Logic
+      meteorTimer += dt;
+      if (meteorTimer > 4 && Math.random() < 0.03) {
+        spawnMeteor();
+        meteorTimer = 0;
+      }
 
-        const pulse = Math.sin(time * 2 + em.pulseOffset) * 0.2 + 0.8;
-        const emScale = FOV / (FOV + em.z);
-        const emPx = em.x * emScale + width * 0.5;
-        const emPy = em.y;
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        const m = meteors[i];
+        m.x += Math.cos(m.angle) * m.speed;
+        m.y += Math.sin(m.angle) * m.speed;
+        m.life -= m.decay;
+
+        if (m.life <= 0 || m.x > width || m.y > height) {
+          meteors.splice(i, 1);
+          continue;
+        }
+
+        const tailX = m.x - Math.cos(m.angle) * m.length * m.life;
+        const tailY = m.y - Math.sin(m.angle) * m.length * m.life;
+
+        const mGrad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
+        mGrad.addColorStop(0, 'rgba(255, 255, 255, ' + m.life + ')');
+        mGrad.addColorStop(0.3, 'rgba(0, 240, 255, ' + (m.life * 0.8) + ')');
+        mGrad.addColorStop(1, 'rgba(0, 240, 255, 0)');
 
         ctx.beginPath();
-        ctx.arc(emPx, emPy, em.size * emScale * pulse, 0, Math.PI * 2);
-        ctx.fillStyle = `${em.color} ${em.alpha * pulse})`;
-        ctx.shadowColor = em.glowColor;
-        ctx.shadowBlur = 8;
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(tailX, tailY);
+        ctx.strokeStyle = mGrad;
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  /* ==============================================================
+     2. AVENGERS INITIATIVE TACTICAL HUD BAR
+     ============================================================== */
+  function setupAvengersHudBar() {
+    if (document.getElementById('avengers-hud-bar')) return;
+
+    const bar = document.createElement('div');
+    bar.id = 'avengers-hud-bar';
+    bar.className = 'avengers-hud-bar';
+    bar.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;">
+        <img src="/assets/avengers-badge.svg" class="avengers-badge-icon" alt="Avengers Emblem" />
+        <span><strong>STARK INDUSTRIES</strong> // AVENGERS INITIATIVE PROTOCOL 421</span>
+      </div>
+      <div style="display:none;align-items:center;gap:18px;" class="md:flex">
+        <span>PRODUCT: <strong style="color:#00f0ff;">VICTOR AI</strong> (JARVIS-CLASS OS)</span>
+        <span>ARC REACTOR: <strong style="color:#00f0ff;">100% OPERATIONAL</strong></span>
+        <span>SECURITY: <strong style="color:#fbbf24;">CLEARANCE LEVEL 7</strong></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button id="stark-sound-toggle" style="background:rgba(0,240,255,0.12);border:1px solid rgba(0,240,255,0.4);border-radius:4px;padding:2px 8px;font-size:10px;color:#00f0ff;cursor:pointer;font-family:inherit;">⚡ FX: ON</button>
+        <span style="color:#22c55e;">● SYSTEM LIVE</span>
+      </div>
+    `;
+
+    document.body.prepend(bar);
+  }
+
+  /* ==============================================================
+     3. STARK INDUSTRIES LOGO IN NAV & FOOTER ENHANCEMENTS
+     ============================================================== */
+  function setupStarkLogoEnhancements() {
+    // Find all logo pictures / links in navbar & footer
+    const logoLinks = document.querySelectorAll('a[href="/"]');
+    logoLinks.forEach((link) => {
+      // Look for picture or img inside
+      const img = link.querySelector('img[src*="logo"]');
+      if (img) {
+        // Upgrade img source to authentic Stark Industries logo
+        img.src = '/assets/stark-industries-logo.png';
+        img.alt = 'Stark Industries Logo';
+        img.className = 'stark-logo-img';
+
+        // Remove old responsive source elements if present
+        const picture = img.closest('picture');
+        if (picture) {
+          const sources = picture.querySelectorAll('source');
+          sources.forEach((s) => s.remove());
+        }
+
+        // Add 3D rotating halo around logo if not present
+        if (!link.querySelector('.stark-logo-halo')) {
+          const halo = document.createElement('div');
+          halo.className = 'stark-logo-halo';
+          img.parentNode.insertBefore(halo, img);
+        }
+
+        // Update brand text if present
+        const brandText = link.querySelector('span');
+        if (brandText) {
+          brandText.innerHTML = 'STARK INDUSTRIES <span class="stark-product-badge"><span class="stark-product-dot"></span>VICTOR AI</span>';
+        }
+      }
+    });
+  }
+
+  /* ==============================================================
+     4. HERO ARC REACTOR CORE WIDGET
+     ============================================================== */
+  function setupHeroArcReactor() {
+    if (document.getElementById('stark-hero-reactor')) return;
+
+    const heroHeading = document.querySelector('h1');
+    if (!heroHeading) return;
+
+    const container = document.createElement('div');
+    container.id = 'stark-hero-reactor';
+    container.style.textAlign = 'center';
+    container.innerHTML = `
+      <div class="arc-reactor-core-widget">
+        <img src="/assets/stark-arc-reactor.svg" alt="Arc Reactor Core" />
+        <span>STARK R&D // <strong>VICTOR AI AUTONOMOUS DESKTOP OS</strong></span>
+      </div>
+    `;
+
+    heroHeading.parentNode.insertBefore(container, heroHeading);
+
+    // Also add .hud-notched to cards
+    const cards = document.querySelectorAll('.card-tier, div[class*="rounded-2xl"], div[class*="rounded-3xl"]');
+    cards.forEach((card) => {
+      card.classList.add('hud-notched');
+    });
+  }
+
+  /* ==============================================================
+     5. AVENGERS HIGH-TECH SCI-FI AUDIO SYNTHESIZER (WEB AUDIO API)
+     ============================================================== */
+  let audioCtx = null;
+  let soundEnabled = true;
+
+  function initAudio() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) {
+        audioCtx = new AudioContext();
       }
     }
-
-    render();
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
   }
 
-  /* ==============================================================
-     2. DYNAMIC PRISMATIC CURSOR SPOTLIGHT
-     ============================================================== */
-  function setupCursorSpotlight() {
-    let spotlight = document.getElementById('victor-cursor-spotlight');
-    if (!spotlight) {
-      spotlight = document.createElement('div');
-      spotlight.id = 'victor-cursor-spotlight';
-      spotlight.style.position = 'fixed';
-      spotlight.style.top = '0';
-      spotlight.style.left = '0';
-      spotlight.style.width = '720px';
-      spotlight.style.height = '720px';
-      spotlight.style.borderRadius = '50%';
-      spotlight.style.pointerEvents = 'none';
-      spotlight.style.zIndex = '1';
-      spotlight.style.background = 'radial-gradient(circle at center, rgba(0, 245, 255, 0.16) 0%, rgba(168, 85, 247, 0.09) 40%, transparent 70%)';
-      spotlight.style.transform = 'translate(-50%, -50%) translate3d(-999px, -999px, 0)';
-      spotlight.style.transition = 'opacity 0.4s ease';
-      spotlight.style.mixBlendMode = 'screen';
-      document.body.appendChild(spotlight);
+  function playHighTechChirp(freq1, freq2, duration, type = 'sine', gainVal = 0.04) {
+    if (!soundEnabled) return;
+    try {
+      initAudio();
+      if (!audioCtx) return;
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq1, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(freq2, audioCtx.currentTime + duration);
+
+      gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch (e) {
+      // Audio autoplay policy fallback
     }
+  }
 
-    let curX = -999, curY = -999;
-    let targetX = -999, targetY = -999;
-
-    window.addEventListener('mousemove', (e) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
+  function setupAvengersAudio() {
+    // Sound Toggle Button
+    document.addEventListener('click', (e) => {
+      const toggle = e.target.closest('#stark-sound-toggle');
+      if (toggle) {
+        soundEnabled = !soundEnabled;
+        toggle.textContent = soundEnabled ? '⚡ FX: ON' : '⚡ FX: OFF';
+        toggle.style.color = soundEnabled ? '#00f0ff' : '#94a3b8';
+        if (soundEnabled) playHighTechChirp(800, 1600, 0.08, 'sine', 0.06);
+        return;
+      }
     });
 
-    function updateSpotlight() {
-      curX += (targetX - curX) * 0.12;
-      curY += (targetY - curY) * 0.12;
-      spotlight.style.transform = `translate(-50%, -50%) translate3d(${curX}px, ${curY}px, 0)`;
-      requestAnimationFrame(updateSpotlight);
-    }
-    updateSpotlight();
+    // Hover audio on buttons and cards
+    const interactiveElements = document.querySelectorAll('button, a, .card-tier');
+    interactiveElements.forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        playHighTechChirp(1800, 2400, 0.035, 'sine', 0.02);
+      }, { passive: true });
+    });
   }
 
   /* ==============================================================
-     3. 3D CARD PERSPECTIVE TILT WITH NEON AURORA REFLECTION
+     6. 3D CARD PERSPECTIVE TILT
      ============================================================== */
   function setup3DCardTilt() {
-    const cardSelectors = [
-      '.glass-card',
-      'nav',
-      '[class*="rounded-3xl"]',
-      '[class*="rounded-2xl"]',
-      '[class*="bg-black/"]',
-      '.btn-pill-primary'
-    ];
+    const cards = document.querySelectorAll('.card-tier, div[class*="rounded-2xl"], div[class*="rounded-3xl"]');
+    cards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
 
-    function applyTilt() {
-      const cards = document.querySelectorAll(cardSelectors.join(','));
+        const rotX = ((y - cy) / cy) * -6;
+        const rotY = ((x - cx) / cx) * 6;
 
-      cards.forEach((card) => {
-        if (card.dataset.tiltApplied) return;
-        card.dataset.tiltApplied = 'true';
-
-        card.style.transition = 'transform 0.2s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.2s ease';
-        card.style.transformStyle = 'preserve-3d';
-
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-
-          const rotateX = ((y - centerY) / centerY) * -6.5;
-          const rotateY = ((x - centerX) / centerX) * 6.5;
-
-          card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(8px)`;
-          card.style.boxShadow = `0 20px 45px -12px rgba(0, 245, 255, 0.35), 0 0 25px -4px rgba(168, 85, 247, 0.25)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-          card.style.boxShadow = '';
-        });
+        card.style.transform = 'perspective(1000px) rotateX(' + rotX.toFixed(2) + 'deg) rotateY(' + rotY.toFixed(2) + 'deg) translateY(-4px)';
       });
-    }
 
-    applyTilt();
-    setInterval(applyTilt, 2000);
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
   }
 
   /* ==============================================================
-     4. CLICK ENERGY SHOCKWAVE & NEON SPARK EXPLOSION
+     7. CLICK ENERGY SHOCKWAVE EFFECT
      ============================================================== */
-  function setupClickShockwave() {
+  function setupClickShockwaves() {
     window.addEventListener('click', (e) => {
-      createShockwave(e.clientX, e.clientY);
-    });
+      playHighTechChirp(880, 1760, 0.08, 'triangle', 0.05);
 
-    function createShockwave(x, y) {
-      const ring = document.createElement('div');
-      ring.style.position = 'fixed';
-      ring.style.left = `${x}px`;
-      ring.style.top = `${y}px`;
-      ring.style.width = '20px';
-      ring.style.height = '20px';
-      ring.style.borderRadius = '50%';
-      ring.style.border = '2px solid #00f5ff';
-      ring.style.boxShadow = '0 0 25px #00f5ff, inset 0 0 15px #a855f7';
-      ring.style.transform = 'translate(-50%, -50%) scale(1)';
-      ring.style.pointerEvents = 'none';
-      ring.style.zIndex = '99999';
-      ring.style.transition = 'transform 0.65s cubic-bezier(0.1, 0.8, 0.2, 1), opacity 0.65s ease';
-      document.body.appendChild(ring);
+      const wave = document.createElement('div');
+      wave.style.position = 'fixed';
+      wave.style.left = e.clientX + 'px';
+      wave.style.top = e.clientY + 'px';
+      wave.style.width = '10px';
+      wave.style.height = '10px';
+      wave.style.borderRadius = '50%';
+      wave.style.border = '2px solid #00f0ff';
+      wave.style.boxShadow = '0 0 20px #00f0ff, inset 0 0 10px #00f0ff';
+      wave.style.transform = 'translate(-50%, -50%) scale(1)';
+      wave.style.pointerEvents = 'none';
+      wave.style.zIndex = '99999';
+      wave.style.transition = 'all 0.65s cubic-bezier(0.1, 0.9, 0.2, 1)';
+      wave.style.opacity = '1';
+
+      document.body.appendChild(wave);
 
       requestAnimationFrame(() => {
-        ring.style.transform = 'translate(-50%, -50%) scale(14)';
-        ring.style.opacity = '0';
+        wave.style.transform = 'translate(-50%, -50%) scale(22)';
+        wave.style.opacity = '0';
       });
 
-      setTimeout(() => ring.remove(), 700);
-
-      const sparkCount = 14;
-      for (let i = 0; i < sparkCount; i++) {
-        const spark = document.createElement('div');
-        const angle = (Math.PI * 2 * i) / sparkCount + (Math.random() - 0.5) * 0.4;
-        const velocity = Math.random() * 85 + 40;
-        const targetX = Math.cos(angle) * velocity;
-        const targetY = Math.sin(angle) * velocity;
-
-        spark.style.position = 'fixed';
-        spark.style.left = `${x}px`;
-        spark.style.top = `${y}px`;
-        spark.style.width = `${Math.random() * 4 + 3}px`;
-        spark.style.height = spark.style.width;
-        spark.style.borderRadius = '50%';
-        spark.style.backgroundColor = Math.random() > 0.5 ? '#00f5ff' : '#a855f7';
-        spark.style.boxShadow = '0 0 10px #00f5ff';
-        spark.style.pointerEvents = 'none';
-        spark.style.zIndex = '99999';
-        spark.style.transform = 'translate(-50%, -50%) scale(1)';
-        spark.style.transition = 'transform 0.55s cubic-bezier(0.15, 0.85, 0.35, 1), opacity 0.55s ease';
-        document.body.appendChild(spark);
-
-        requestAnimationFrame(() => {
-          spark.style.transform = `translate(calc(-50% + ${targetX}px), calc(-50% + ${targetY}px)) scale(0)`;
-          spark.style.opacity = '0';
-        });
-
-        setTimeout(() => spark.remove(), 600);
-      }
-    }
+      setTimeout(() => {
+        wave.remove();
+      }, 700);
+    });
   }
 
-  /* ==============================================================
-     5. HERO INTERACTIVE 3D CORE GYROSCOPE & AUDIO EQUALIZER
-     ============================================================== */
-  function setupHeroInteractiveCore() {
-    const heroCore = document.querySelector('.aspect-square');
-    if (heroCore) {
-      window.addEventListener('mousemove', (e) => {
-        const rect = heroCore.getBoundingClientRect();
-        const coreCenterX = rect.left + rect.width / 2;
-        const coreCenterY = rect.top + rect.height / 2;
-
-        const deltaX = (e.clientX - coreCenterX) / (window.innerWidth / 2);
-        const deltaY = (e.clientY - coreCenterY) / (window.innerHeight / 2);
-
-        heroCore.style.transform = `perspective(1000px) rotateY(${deltaX * 18}deg) rotateX(${-deltaY * 18}deg) scale(1.03)`;
-        heroCore.style.transition = 'transform 0.1s ease-out';
-      });
-
-      heroCore.addEventListener('mouseleave', () => {
-        heroCore.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
-        heroCore.style.transition = 'transform 0.5s ease-out';
-      });
-    }
-
-    let eqContainer = document.getElementById('victor-live-equalizer');
-    if (!eqContainer) {
-      const heroSection = document.querySelector('section[aria-label="Hero Introduction"]') || document.querySelector('main');
-      if (heroSection) {
-        eqContainer = document.createElement('div');
-        eqContainer.id = 'victor-live-equalizer';
-        eqContainer.style.display = 'flex';
-        eqContainer.style.alignItems = 'center';
-        eqContainer.style.justifyContent = 'center';
-        eqContainer.style.gap = '5px';
-        eqContainer.style.marginTop = '18px';
-        eqContainer.style.marginBottom = '12px';
-        eqContainer.style.cursor = 'pointer';
-        eqContainer.title = 'Victor AI Live Neural Voice Core - Interactive';
-
-        for (let i = 0; i < 22; i++) {
-          const bar = document.createElement('div');
-          bar.className = 'eq-bar';
-          bar.style.width = '3.5px';
-          bar.style.height = '14px';
-          bar.style.borderRadius = '3px';
-          bar.style.background = 'linear-gradient(180deg, #00f5ff 0%, #8b5cf6 50%, #ec4899 100%)';
-          bar.style.boxShadow = '0 0 8px rgba(0, 245, 255, 0.45)';
-          bar.style.transition = 'height 0.08s ease';
-          eqContainer.appendChild(bar);
-        }
-
-        const statusPill = document.createElement('div');
-        statusPill.innerHTML = '<span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#00f5ff; margin-right:6px; box-shadow:0 0 10px #00f5ff; animation:pulse 1.5s infinite;"></span><span style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#00f5ff;">NEURAL 3D CORE ACTIVE</span>';
-        statusPill.style.display = 'flex';
-        statusPill.style.alignItems = 'center';
-        statusPill.style.justifyContent = 'center';
-        statusPill.style.marginTop = '8px';
-
-        const wrapper = document.createElement('div');
-        wrapper.style.display = 'flex';
-        wrapper.style.flexDirection = 'column';
-        wrapper.style.alignItems = 'center';
-        wrapper.style.zIndex = '20';
-        wrapper.style.position = 'relative';
-        wrapper.appendChild(eqContainer);
-        wrapper.appendChild(statusPill);
-
-        const heroContainer = heroSection.querySelector('.container') || heroSection;
-        heroContainer.prepend(wrapper);
-
-        let eqTime = 0;
-        let mouseSpeed = 0;
-        let lastX = 0, lastY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-          const dx = e.clientX - lastX;
-          const dy = e.clientY - lastY;
-          mouseSpeed = Math.min(2.5, Math.hypot(dx, dy) * 0.04);
-          lastX = e.clientX;
-          lastY = e.clientY;
-        });
-
-        function animateEq() {
-          eqTime += 0.08;
-          mouseSpeed *= 0.94;
-          const bars = eqContainer.querySelectorAll('.eq-bar');
-          bars.forEach((bar, idx) => {
-            const freq = Math.sin(eqTime * 2.2 + idx * 0.38) * 0.5 + 0.5;
-            const extra = Math.sin(eqTime * 4.5 + idx * 0.8) * 0.3;
-            const h = Math.max(6, (freq + extra + mouseSpeed * 0.8) * 36);
-            bar.style.height = `${h.toFixed(1)}px`;
-            bar.style.opacity = (0.5 + freq * 0.5).toFixed(2);
-          });
-          requestAnimationFrame(animateEq);
-        }
-        animateEq();
-      }
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
 })();
