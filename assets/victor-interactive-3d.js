@@ -4,6 +4,7 @@
  * - Authentic Stark Industries Official Brand Mark
  * - Clean Luxury UI Glassmorphism
  * - Refined 3D Card Perspective
+ * - Avengers Theme Cinematic Background Music (BGM) with Floating Controller
  */
 
 (function () {
@@ -18,6 +19,7 @@
   function init() {
     setupDeepSpaceCanvas();
     setup3DCardTilt();
+    setupAvengersBGM();
 
     // Cleanly hook brand & typography without interfering with React
     applyExecutiveBranding();
@@ -145,7 +147,6 @@
     function render(now) {
       lastTime = now;
 
-      // Smooth camera tilt
       mouse.x += (mouse.targetX - mouse.x) * 0.035;
       mouse.y += (mouse.targetY - mouse.y) * 0.035;
       mouse.tiltX = ((mouse.x - width * 0.5) / (width * 0.5)) * 90;
@@ -154,7 +155,6 @@
       ctx.fillStyle = '#02040a';
       ctx.fillRect(0, 0, width, height);
 
-      // Deep space subtle gradient glow
       const grad = ctx.createRadialGradient(
         width * 0.5 - mouse.tiltX * 0.2, height * 0.3 - mouse.tiltY * 0.2, 5,
         width * 0.5 - mouse.tiltX * 0.2, height * 0.3 - mouse.tiltY * 0.2, width * 0.6
@@ -232,6 +232,80 @@
         card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0px)';
       });
     });
+  }
+
+  /* ==============================================================
+     4. AVENGERS THEME BGM CONTROLLER & AUDIO ENGINE
+     ============================================================== */
+  function setupAvengersBGM() {
+    if (document.getElementById('stark-bgm-widget')) return;
+
+    // Create Audio Element
+    let audio = document.getElementById('stark-avengers-audio');
+    if (!audio) {
+      audio = document.createElement('audio');
+      audio.id = 'stark-avengers-audio';
+      audio.src = '/assets/avengers-theme.mp3';
+      audio.loop = true;
+      audio.preload = 'auto';
+      audio.volume = 0.35;
+      document.body.appendChild(audio);
+    }
+
+    // Create Floating Controller
+    const widget = document.createElement('div');
+    widget.id = 'stark-bgm-widget';
+    widget.className = 'stark-bgm-controller';
+    widget.title = 'Click to Play / Pause Avengers Theme BGM';
+    widget.innerHTML = `
+      <div class="stark-bgm-soundwave">
+        <span class="stark-bgm-bar"></span>
+        <span class="stark-bgm-bar"></span>
+        <span class="stark-bgm-bar"></span>
+        <span class="stark-bgm-bar"></span>
+      </div>
+      <span class="stark-bgm-label">Avengers BGM</span>
+      <span class="stark-bgm-status" id="stark-bgm-status-text">▶ PLAY</span>
+    `;
+    document.body.appendChild(widget);
+
+    const statusText = widget.querySelector('#stark-bgm-status-text');
+
+    function togglePlay() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          widget.classList.add('stark-bgm-playing');
+          statusText.textContent = '⏸ PAUSE';
+          statusText.style.color = '#00f0ff';
+        }).catch((err) => {
+          console.log('Autoplay restriction, user click required');
+        });
+      } else {
+        audio.pause();
+        widget.classList.remove('stark-bgm-playing');
+        statusText.textContent = '▶ PLAY';
+        statusText.style.color = '#94a3b8';
+      }
+    }
+
+    widget.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePlay();
+    });
+
+    // Optional: Start on first user interaction with the page
+    const startOnInteraction = () => {
+      if (audio.paused) {
+        audio.play().then(() => {
+          widget.classList.add('stark-bgm-playing');
+          statusText.textContent = '⏸ PAUSE';
+          statusText.style.color = '#00f0ff';
+        }).catch(() => {});
+      }
+      window.removeEventListener('click', startOnInteraction);
+    };
+
+    window.addEventListener('click', startOnInteraction, { once: true });
   }
 
 })();
