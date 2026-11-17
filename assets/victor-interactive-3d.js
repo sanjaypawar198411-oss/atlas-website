@@ -12,7 +12,6 @@
 (function () {
   'use strict';
 
-  // Run when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
@@ -22,15 +21,91 @@
   function init() {
     setupDeepSpaceCanvas();
     setupAvengersHudBar();
-    setupStarkLogoEnhancements();
     setup3DCardTilt();
     setupAvengersAudio();
     setupClickShockwaves();
-    setupHeroArcReactor();
+
+    // Repeatedly apply branding to cleanly hook after React client-side hydration
+    applyBranding();
+    const intervalId = setInterval(applyBranding, 150);
+    setTimeout(() => clearInterval(intervalId), 10000);
+
+    // MutationObserver to lock the branding in place
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(() => {
+        applyBranding();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
   }
 
   /* ==============================================================
-     1. 3D INTERACTIVE DEEP SPACE CANVAS (STARS, NEBULA, METEORS)
+     1. STARK INDUSTRIES BRANDING & HERO ENHANCEMENT
+     ============================================================== */
+  function applyBranding() {
+    // 1. Navbar Brand
+    const navBar = document.querySelector('nav');
+    if (navBar) {
+      const firstLink = navBar.querySelector('a');
+      if (firstLink && !firstLink.classList.contains('stark-applied')) {
+        firstLink.classList.add('stark-applied');
+        firstLink.className = 'stark-brand-logo stark-applied group';
+        firstLink.setAttribute('aria-label', 'Stark Industries — Victor AI');
+        firstLink.innerHTML = `
+          <div class="stark-logo-frame">
+            <div class="stark-logo-halo"></div>
+            <img src="/assets/stark-industries-logo.png" alt="Stark Industries" class="stark-logo-img" />
+          </div>
+          <span class="stark-product-badge"><span class="stark-product-dot"></span>VICTOR AI</span>
+        `;
+      }
+    }
+
+    // 2. Footer Brand
+    const footer = document.querySelector('footer');
+    if (footer) {
+      const footerLink = footer.querySelector('a[href="/"]');
+      if (footerLink && !footerLink.classList.contains('stark-applied')) {
+        footerLink.classList.add('stark-applied');
+        footerLink.className = 'stark-brand-logo stark-applied group w-fit';
+        footerLink.innerHTML = `
+          <div class="stark-logo-frame">
+            <div class="stark-logo-halo"></div>
+            <img src="/assets/stark-industries-logo.png" alt="Stark Industries" class="stark-logo-img" />
+          </div>
+          <span class="stark-product-badge"><span class="stark-product-dot"></span>VICTOR AI</span>
+        `;
+      }
+    }
+
+    // 3. Hero Headline
+    const heroHeading = document.querySelector('h1');
+    if (heroHeading && !heroHeading.classList.contains('stark-heading-applied')) {
+      heroHeading.classList.add('stark-heading-applied');
+      heroHeading.innerHTML = `
+        <span class="block text-xs uppercase tracking-[0.28em] text-[#00f0ff] mb-2 font-mono font-bold" style="text-shadow:0 0 12px rgba(0,240,255,0.8);">STARK INDUSTRIES // FLAGSHIP AI</span>
+        <span class="block">The Autonomous <br class="sm:hidden"/><span class="text-gradient-cyan">JARVIS-Class AI</span></span> 
+        <span class="block">for Windows PC.</span>
+      `;
+
+      const subtitle = heroHeading.parentNode.querySelector('p');
+      if (subtitle && !subtitle.classList.contains('stark-sub-applied')) {
+        subtitle.classList.add('stark-sub-applied');
+        subtitle.textContent = 'Engineered by Stark Industries R&D. Tactical voice control, deep PC automation, and local privacy.';
+      }
+    }
+
+    // 4. Cards Tactical Notches
+    const cards = document.querySelectorAll('.card-tier, div[class*="rounded-2xl"], div[class*="rounded-3xl"]');
+    cards.forEach((card) => {
+      if (!card.classList.contains('hud-notched')) {
+        card.classList.add('hud-notched');
+      }
+    });
+  }
+
+  /* ==============================================================
+     2. 3D INTERACTIVE DEEP SPACE CANVAS (STARS, NEBULA, METEORS)
      ============================================================== */
   function setupDeepSpaceCanvas() {
     let canvas = document.getElementById('victor-3d-canvas');
@@ -101,20 +176,17 @@
     }
 
     let meteorTimer = 0;
-
     let lastTime = performance.now();
 
     function render(now) {
       const dt = Math.min(32, now - lastTime) * 0.001;
       lastTime = now;
 
-      // Smooth mouse follow for 3D camera parallax
       mouse.x += (mouse.targetX - mouse.x) * 0.04;
       mouse.y += (mouse.targetY - mouse.y) * 0.04;
       mouse.tiltX = ((mouse.x - width * 0.5) / (width * 0.5)) * 120;
       mouse.tiltY = ((mouse.y - height * 0.5) / (height * 0.5)) * 120;
 
-      // Clear with deep cosmic black
       ctx.fillStyle = '#02040a';
       ctx.fillRect(0, 0, width, height);
 
@@ -139,15 +211,13 @@
       ctx.fillStyle = grad2;
       ctx.fillRect(0, 0, width, height);
 
-      // Render and update 3D Stars
+      // 3D Stars
       const cx = width * 0.5;
       const cy = height * 0.5;
       const visibleStars = [];
 
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
-
-        // Move star forward slowly
         star.z -= 0.6;
         if (star.z <= 1) {
           star.z = 1000;
@@ -155,7 +225,6 @@
           star.y = (Math.random() - 0.5) * height * 2;
         }
 
-        // Perspective 3D calculation
         const px = (star.x - mouse.tiltX) * (400 / star.z) + cx;
         const py = (star.y - mouse.tiltY) * (400 / star.z) + cy;
 
@@ -184,7 +253,6 @@
           ctx.fill();
           ctx.shadowBlur = 0;
 
-          // Store for constellation lines if close to cursor
           const distToCursor = Math.hypot(px - mouse.x, py - mouse.y);
           if (distToCursor < 180) {
             visibleStars.push({ x: px, y: py, dist: distToCursor });
@@ -192,7 +260,7 @@
         }
       }
 
-      // Constellation Lines Near Cursor
+      // Constellation Lines
       for (let i = 0; i < visibleStars.length; i++) {
         for (let j = i + 1; j < visibleStars.length; j++) {
           const dx = visibleStars[i].x - visibleStars[j].x;
@@ -210,7 +278,7 @@
         }
       }
 
-      // Shooting Stars / Meteors Logic
+      // Meteors
       meteorTimer += dt;
       if (meteorTimer > 4 && Math.random() < 0.03) {
         spawnMeteor();
@@ -251,7 +319,7 @@
   }
 
   /* ==============================================================
-     2. AVENGERS INITIATIVE TACTICAL HUD BAR
+     3. AVENGERS INITIATIVE TACTICAL HUD BAR
      ============================================================== */
   function setupAvengersHudBar() {
     if (document.getElementById('avengers-hud-bar')) return;
@@ -279,73 +347,7 @@
   }
 
   /* ==============================================================
-     3. STARK INDUSTRIES LOGO IN NAV & FOOTER ENHANCEMENTS
-     ============================================================== */
-  function setupStarkLogoEnhancements() {
-    // Find all logo pictures / links in navbar & footer
-    const logoLinks = document.querySelectorAll('a[href="/"]');
-    logoLinks.forEach((link) => {
-      // Look for picture or img inside
-      const img = link.querySelector('img[src*="logo"]');
-      if (img) {
-        // Upgrade img source to authentic Stark Industries logo
-        img.src = '/assets/stark-industries-logo.png';
-        img.alt = 'Stark Industries Logo';
-        img.className = 'stark-logo-img';
-
-        // Remove old responsive source elements if present
-        const picture = img.closest('picture');
-        if (picture) {
-          const sources = picture.querySelectorAll('source');
-          sources.forEach((s) => s.remove());
-        }
-
-        // Add 3D rotating halo around logo if not present
-        if (!link.querySelector('.stark-logo-halo')) {
-          const halo = document.createElement('div');
-          halo.className = 'stark-logo-halo';
-          img.parentNode.insertBefore(halo, img);
-        }
-
-        // Update brand text if present
-        const brandText = link.querySelector('span');
-        if (brandText) {
-          brandText.innerHTML = 'STARK INDUSTRIES <span class="stark-product-badge"><span class="stark-product-dot"></span>VICTOR AI</span>';
-        }
-      }
-    });
-  }
-
-  /* ==============================================================
-     4. HERO ARC REACTOR CORE WIDGET
-     ============================================================== */
-  function setupHeroArcReactor() {
-    if (document.getElementById('stark-hero-reactor')) return;
-
-    const heroHeading = document.querySelector('h1');
-    if (!heroHeading) return;
-
-    const container = document.createElement('div');
-    container.id = 'stark-hero-reactor';
-    container.style.textAlign = 'center';
-    container.innerHTML = `
-      <div class="arc-reactor-core-widget">
-        <img src="/assets/stark-arc-reactor.svg" alt="Arc Reactor Core" />
-        <span>STARK R&D // <strong>VICTOR AI AUTONOMOUS DESKTOP OS</strong></span>
-      </div>
-    `;
-
-    heroHeading.parentNode.insertBefore(container, heroHeading);
-
-    // Also add .hud-notched to cards
-    const cards = document.querySelectorAll('.card-tier, div[class*="rounded-2xl"], div[class*="rounded-3xl"]');
-    cards.forEach((card) => {
-      card.classList.add('hud-notched');
-    });
-  }
-
-  /* ==============================================================
-     5. AVENGERS HIGH-TECH SCI-FI AUDIO SYNTHESIZER (WEB AUDIO API)
+     4. AVENGERS HIGH-TECH SCI-FI AUDIO SYNTHESIZER (WEB AUDIO API)
      ============================================================== */
   let audioCtx = null;
   let soundEnabled = true;
@@ -353,9 +355,7 @@
   function initAudio() {
     if (!audioCtx) {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (AudioContext) {
-        audioCtx = new AudioContext();
-      }
+      if (AudioContext) audioCtx = new AudioContext();
     }
     if (audioCtx && audioCtx.state === 'suspended') {
       audioCtx.resume();
@@ -383,13 +383,10 @@
 
       osc.start();
       osc.stop(audioCtx.currentTime + duration);
-    } catch (e) {
-      // Audio autoplay policy fallback
-    }
+    } catch (e) {}
   }
 
   function setupAvengersAudio() {
-    // Sound Toggle Button
     document.addEventListener('click', (e) => {
       const toggle = e.target.closest('#stark-sound-toggle');
       if (toggle) {
@@ -397,11 +394,9 @@
         toggle.textContent = soundEnabled ? '⚡ FX: ON' : '⚡ FX: OFF';
         toggle.style.color = soundEnabled ? '#00f0ff' : '#94a3b8';
         if (soundEnabled) playHighTechChirp(800, 1600, 0.08, 'sine', 0.06);
-        return;
       }
     });
 
-    // Hover audio on buttons and cards
     const interactiveElements = document.querySelectorAll('button, a, .card-tier');
     interactiveElements.forEach((el) => {
       el.addEventListener('mouseenter', () => {
@@ -411,7 +406,7 @@
   }
 
   /* ==============================================================
-     6. 3D CARD PERSPECTIVE TILT
+     5. 3D CARD PERSPECTIVE TILT
      ============================================================== */
   function setup3DCardTilt() {
     const cards = document.querySelectorAll('.card-tier, div[class*="rounded-2xl"], div[class*="rounded-3xl"]');
@@ -436,7 +431,7 @@
   }
 
   /* ==============================================================
-     7. CLICK ENERGY SHOCKWAVE EFFECT
+     6. CLICK ENERGY SHOCKWAVE EFFECT
      ============================================================== */
   function setupClickShockwaves() {
     window.addEventListener('click', (e) => {
@@ -464,9 +459,7 @@
         wave.style.opacity = '0';
       });
 
-      setTimeout(() => {
-        wave.remove();
-      }, 700);
+      setTimeout(() => wave.remove(), 700);
     });
   }
 
