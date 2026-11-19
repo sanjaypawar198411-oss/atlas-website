@@ -81,16 +81,12 @@
       if (firstLink && !firstLink.classList.contains('victor-applied')) {
         firstLink.classList.add('victor-applied');
         firstLink.className = 'victor-brand-logo victor-applied group';
-        firstLink.setAttribute('aria-label', 'Victor AI by Punit Pawar');
-        firstLink.setAttribute('href', '/');
+        firstLink.setAttribute('aria-label', 'Victor AI');
         firstLink.innerHTML = `
           <div class="victor-logo-frame">
             <img src="/logo.png" alt="Victor AI" class="victor-logo-img" />
           </div>
-          <div class="victor-brand-info">
-            <span class="victor-brand-name">VICTOR AI</span>
-            <span class="victor-brand-by">by Punit Pawar</span>
-          </div>
+          <span class="victor-brand-name">VICTOR AI</span>
         `;
       }
 
@@ -120,10 +116,7 @@
           <div class="victor-logo-frame">
             <img src="/logo.png" alt="Victor AI" class="victor-logo-img" />
           </div>
-          <div class="victor-brand-info">
-            <span class="victor-brand-name">VICTOR AI</span>
-            <span class="victor-brand-by">by Punit Pawar</span>
-          </div>
+          <span class="victor-brand-name">VICTOR AI</span>
         `;
       }
 
@@ -131,7 +124,7 @@
       const copyrightP = footer.querySelector('p.text-gray-500, p[class*="text-gray"]');
       if (copyrightP && !copyrightP.classList.contains('victor-copy-applied')) {
         copyrightP.classList.add('victor-copy-applied');
-        copyrightP.innerHTML = '© 2026 Victor AI. All rights reserved. Crafted with precision by Punit Pawar.';
+        copyrightP.innerHTML = '© 2026 Victor AI. All rights reserved. ';
       }
     }
 
@@ -140,7 +133,7 @@
     if (heroHeading && !heroHeading.classList.contains('victor-heading-applied')) {
       heroHeading.classList.add('victor-heading-applied');
       heroHeading.innerHTML = `
-        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[11px] font-semibold tracking-[0.16em] uppercase text-cyan-300 mb-4 font-mono">Autonomous Desktop Experience • by Punit Pawar</span>
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[11px] font-semibold tracking-[0.16em] uppercase text-cyan-300 mb-4 font-mono">Autonomous Desktop Experience</span>
         <span class="block text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-2">The Autonomous <br class="sm:hidden"/><span class="text-gradient-cyan">JARVIS-Class AI</span></span>
         <span class="block text-3xl sm:text-5xl md:text-6xl font-light text-white/90">for Windows PC.</span>
       `;
@@ -148,7 +141,7 @@
       const subtitle = heroHeading.parentNode.querySelector('p');
       if (subtitle && !subtitle.classList.contains('victor-sub-applied')) {
         subtitle.classList.add('victor-sub-applied');
-        subtitle.textContent = 'Victor AI by Punit Pawar — Transform Windows into a cinematic, voice-controlled command center with local neural execution and complete privacy.';
+        subtitle.textContent = 'Victor AI — Transform Windows into a cinematic, voice-controlled command center with local neural execution and complete privacy.';
       }
     }
 

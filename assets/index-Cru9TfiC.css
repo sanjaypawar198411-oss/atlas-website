@@ -120,11 +120,7 @@ html, body {
   object-fit: contain !important;
 }
 
-.victor-brand-info {
-  display: flex !important;
-  flex-direction: column !important;
-  line-height: 1.15 !important;
-}
+
 
 .victor-brand-name {
   font-family: ui-sans-serif, system-ui, sans-serif !important;
@@ -134,13 +130,7 @@ html, body {
   color: #ffffff !important;
 }
 
-.victor-brand-by {
-  font-size: 10px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.06em !important;
-  color: #38bdf8 !important;
-  text-transform: uppercase !important;
-}
+
 
 /* ==========================================================================
    ARCHER AI FLOATING PILL NAVBAR
