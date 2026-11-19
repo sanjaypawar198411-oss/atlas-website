@@ -1,14 +1,32 @@
 /**
- * STARK INDUSTRIES // EXECUTIVE DESKTOP AI
- * - Deep Space Interactive Starfield (3D Multi-plane Parallax)
- * - Authentic Stark Industries Official Brand Mark
- * - Clean Luxury UI Glassmorphism
- * - Refined 3D Card Perspective
- * - Avengers Theme Cinematic Background Music (BGM) with Floating Controller
+ * VICTOR AI // AUTONOMOUS SCI-FI DESKTOP AI
+ * Created by Punit Pawar
+ * 
+ * ARCHER AI THEME SYSTEM (https://archerai.pages.dev/):
+ * - Pure Pitch Black Canvas (#000000)
+ * - Ambient Neon Glow Blooms (Cyan, Violet, Teal)
+ * - Floating Pill Glass Navbar with Active Gradient Underline
+ * - Sci-Fi Chamfered Cut-Corner Amber/Gold CTA Buttons
+ * - High-Impact Neon Pricing Cards
+ * - Founder Card for Punit Pawar
  */
 
 (function () {
   'use strict';
+
+  // 1. Remove any legacy audio / BGM widgets immediately
+  function removeLegacyAudio() {
+    const legacyAudio = document.getElementById('stark-avengers-audio');
+    if (legacyAudio && legacyAudio.parentNode) {
+      legacyAudio.pause();
+      legacyAudio.parentNode.removeChild(legacyAudio);
+    }
+    const legacyWidget = document.getElementById('stark-bgm-widget');
+    if (legacyWidget && legacyWidget.parentNode) {
+      legacyWidget.parentNode.removeChild(legacyWidget);
+    }
+  }
+  removeLegacyAudio();
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
@@ -17,80 +35,164 @@
   }
 
   function init() {
-    setupDeepSpaceCanvas();
+    removeLegacyAudio();
+    setupArcherGlowBlobs();
+    setupStarfieldCanvas();
     setup3DCardTilt();
-    setupAvengersBGM();
 
-    // Cleanly hook brand & typography without interfering with React
-    applyExecutiveBranding();
-    const timer = setInterval(applyExecutiveBranding, 150);
+    // Apply Victor AI by Punit Pawar branding
+    applyVictorBranding();
+    const timer = setInterval(applyVictorBranding, 150);
     setTimeout(() => clearInterval(timer), 8000);
 
     if (window.MutationObserver) {
       const observer = new MutationObserver(() => {
-        applyExecutiveBranding();
+        applyVictorBranding();
       });
       observer.observe(document.body, { childList: true, subtree: true });
     }
   }
 
   /* ==============================================================
-     1. OFFICIAL STARK INDUSTRIES BRANDING
+     1. ARCHER AI AMBIENT GLOW BLOBS
      ============================================================== */
-  function applyExecutiveBranding() {
-    // 1. Clean Navbar Brand
+  function setupArcherGlowBlobs() {
+    if (document.getElementById('archer-glow-container')) return;
+
+    const container = document.createElement('div');
+    container.id = 'archer-glow-container';
+    container.setAttribute('aria-hidden', 'true');
+    container.innerHTML = `
+      <div class="archer-glow-blob archer-glow-cyan"></div>
+      <div class="archer-glow-blob archer-glow-violet"></div>
+      <div class="archer-glow-blob archer-glow-teal"></div>
+    `;
+    document.body.prepend(container);
+  }
+
+  /* ==============================================================
+     2. VICTOR AI (BY PUNIT PAWAR) BRANDING & THEME HOOKS
+     ============================================================== */
+  function applyVictorBranding() {
+    // A. Clean Floating Navbar Brand
     const navBar = document.querySelector('nav');
     if (navBar) {
       const firstLink = navBar.querySelector('a');
-      if (firstLink && !firstLink.classList.contains('stark-applied')) {
-        firstLink.classList.add('stark-applied');
-        firstLink.className = 'stark-brand-logo stark-applied group';
-        firstLink.setAttribute('aria-label', 'Stark Industries — Victor AI');
+      if (firstLink && !firstLink.classList.contains('victor-applied')) {
+        firstLink.classList.add('victor-applied');
+        firstLink.className = 'victor-brand-logo victor-applied group';
+        firstLink.setAttribute('aria-label', 'Victor AI by Punit Pawar');
+        firstLink.setAttribute('href', '/');
         firstLink.innerHTML = `
-          <img src="/assets/stark-industries-official.png" alt="Stark Industries" class="stark-logo-img" />
-          <span class="stark-logo-divider"></span>
-          <span class="stark-product-tag"><span class="stark-product-dot"></span>VICTOR AI</span>
+          <div class="victor-logo-frame">
+            <img src="/logo.png" alt="Victor AI" class="victor-logo-img" />
+          </div>
+          <div class="victor-brand-info">
+            <span class="victor-brand-name">VICTOR AI</span>
+            <span class="victor-brand-by">by Punit Pawar</span>
+          </div>
         `;
       }
+
+      // Active nav link indicator
+      const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+      const navLinks = navBar.querySelectorAll('a[href]');
+      navLinks.forEach((link) => {
+        const href = (link.getAttribute('href') || '').replace(/\/$/, '') || '/';
+        if (href === currentPath) {
+          link.classList.add('nav-active');
+        } else if (href !== '/' && currentPath.startsWith(href)) {
+          link.classList.add('nav-active');
+        } else {
+          link.classList.remove('nav-active');
+        }
+      });
     }
 
-    // 2. Clean Footer Brand
+    // B. Clean Footer Brand
     const footer = document.querySelector('footer');
     if (footer) {
       const footerLink = footer.querySelector('a[href="/"]');
-      if (footerLink && !footerLink.classList.contains('stark-applied')) {
-        footerLink.classList.add('stark-applied');
-        footerLink.className = 'stark-brand-logo stark-applied group w-fit';
+      if (footerLink && !footerLink.classList.contains('victor-applied')) {
+        footerLink.classList.add('victor-applied');
+        footerLink.className = 'victor-brand-logo victor-applied group w-fit';
         footerLink.innerHTML = `
-          <img src="/assets/stark-industries-official.png" alt="Stark Industries" class="stark-logo-img" />
-          <span class="stark-logo-divider"></span>
-          <span class="stark-product-tag"><span class="stark-product-dot"></span>VICTOR AI</span>
+          <div class="victor-logo-frame">
+            <img src="/logo.png" alt="Victor AI" class="victor-logo-img" />
+          </div>
+          <div class="victor-brand-info">
+            <span class="victor-brand-name">VICTOR AI</span>
+            <span class="victor-brand-by">by Punit Pawar</span>
+          </div>
         `;
+      }
+
+      // Footer Copyright
+      const copyrightP = footer.querySelector('p.text-gray-500, p[class*="text-gray"]');
+      if (copyrightP && !copyrightP.classList.contains('victor-copy-applied')) {
+        copyrightP.classList.add('victor-copy-applied');
+        copyrightP.innerHTML = '© 2026 Victor AI. All rights reserved. Crafted with precision by Punit Pawar.';
       }
     }
 
-    // 3. Executive Hero Headline & Subhead
+    // C. Hero Headline & Subhead
     const heroHeading = document.querySelector('h1');
-    if (heroHeading && !heroHeading.classList.contains('stark-heading-applied')) {
-      heroHeading.classList.add('stark-heading-applied');
+    if (heroHeading && !heroHeading.classList.contains('victor-heading-applied')) {
+      heroHeading.classList.add('victor-heading-applied');
       heroHeading.innerHTML = `
-        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.05] border border-white/10 text-[11px] font-semibold tracking-[0.2em] uppercase text-cyan-400 mb-4 font-mono">Stark Industries R&D</span>
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[11px] font-semibold tracking-[0.16em] uppercase text-cyan-300 mb-4 font-mono">Autonomous Desktop Experience • by Punit Pawar</span>
         <span class="block text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-2">The Autonomous <br class="sm:hidden"/><span class="text-gradient-cyan">JARVIS-Class AI</span></span>
         <span class="block text-3xl sm:text-5xl md:text-6xl font-light text-white/90">for Windows PC.</span>
       `;
 
       const subtitle = heroHeading.parentNode.querySelector('p');
-      if (subtitle && !subtitle.classList.contains('stark-sub-applied')) {
-        subtitle.classList.add('stark-sub-applied');
-        subtitle.textContent = 'Engineered by Stark Industries. Transform Windows into a cinematic, voice-controlled command center with local neural execution and complete privacy.';
+      if (subtitle && !subtitle.classList.contains('victor-sub-applied')) {
+        subtitle.classList.add('victor-sub-applied');
+        subtitle.textContent = 'Victor AI by Punit Pawar — Transform Windows into a cinematic, voice-controlled command center with local neural execution and complete privacy.';
+      }
+    }
+
+    // D. Founder Card Enhancement (on /about page and anywhere present)
+    const founderHeading = Array.from(document.querySelectorAll('div, h2, h3, span')).find(
+      (el) => el.textContent && el.textContent.trim().toUpperCase() === 'THE FOUNDER'
+    );
+    if (founderHeading) {
+      const founderCard = founderHeading.closest('section, div[class*="rounded"]');
+      if (founderCard && !founderCard.classList.contains('punit-applied')) {
+        founderCard.classList.add('punit-applied');
+
+        // Update founder image to /punit.png
+        const img = founderCard.querySelector('img');
+        if (img) {
+          img.src = '/punit.png';
+          img.alt = 'Punit Pawar — Founder & Creator of Victor AI';
+          img.className = 'w-14 h-14 md:w-16 md:h-16 rounded-2xl object-cover shrink-0 ring-2 ring-cyan-400/40 shadow-[0_0_20px_rgba(56,189,248,0.3)]';
+        }
+
+        // Update founder title / name
+        const nameEl = founderCard.querySelector('.text-white.font-semibold, div[class*="text-lg"]');
+        if (nameEl) {
+          nameEl.textContent = 'Punit Pawar';
+        }
+
+        const roleEl = founderCard.querySelector('.text-white\\/40, div[class*="text-sm"]');
+        if (roleEl) {
+          roleEl.textContent = 'Founder, Engineer & Creator — India';
+        }
+
+        // Update description paragraph
+        const descEl = founderCard.querySelector('p');
+        if (descEl && descEl.textContent.includes('was founded by')) {
+          descEl.innerHTML = 'Victor AI was founded by <strong class="text-white">Punit Pawar</strong> — a self-taught developer, engineer, and creator from India who built everything solo: <span class="text-white font-medium">the code, the design, the vision.</span> No big team. No outside funding. Just one person who decided the future shouldn’t wait.';
+        }
       }
     }
   }
 
   /* ==============================================================
-     2. CINEMATIC 3D DEEP SPACE CANVAS
+     3. DEEP BLACK PARTICLE STARFIELD CANVAS (#000000)
      ============================================================== */
-  function setupDeepSpaceCanvas() {
+  function setupStarfieldCanvas() {
     let canvas = document.getElementById('victor-3d-canvas');
     if (!canvas) {
       canvas = document.createElement('canvas');
@@ -122,7 +224,7 @@
       initStars();
     }, { passive: true });
 
-    const STAR_COUNT = Math.min(400, Math.floor((width * height) / 3200));
+    const STAR_COUNT = Math.min(320, Math.floor((width * height) / 3800));
     let stars = [];
 
     function initStars() {
@@ -132,37 +234,24 @@
           x: (Math.random() - 0.5) * width * 2,
           y: (Math.random() - 0.5) * height * 2,
           z: Math.random() * 1000 + 1,
-          size: Math.random() * 1.4 + 0.6,
-          baseAlpha: Math.random() * 0.6 + 0.35,
+          size: Math.random() * 1.3 + 0.5,
+          baseAlpha: Math.random() * 0.6 + 0.3,
           twinkleSpeed: Math.random() * 0.03 + 0.01,
           twinklePhase: Math.random() * Math.PI * 2,
-          isCyan: Math.random() < 0.25
+          isCyan: Math.random() < 0.28
         });
       }
     }
     initStars();
 
-    let lastTime = performance.now();
-
-    function render(now) {
-      lastTime = now;
-
+    function render() {
       mouse.x += (mouse.targetX - mouse.x) * 0.035;
       mouse.y += (mouse.targetY - mouse.y) * 0.035;
-      mouse.tiltX = ((mouse.x - width * 0.5) / (width * 0.5)) * 90;
-      mouse.tiltY = ((mouse.y - height * 0.5) / (height * 0.5)) * 90;
+      mouse.tiltX = ((mouse.x - width * 0.5) / (width * 0.5)) * 60;
+      mouse.tiltY = ((mouse.y - height * 0.5) / (height * 0.5)) * 60;
 
-      ctx.fillStyle = '#02040a';
-      ctx.fillRect(0, 0, width, height);
-
-      const grad = ctx.createRadialGradient(
-        width * 0.5 - mouse.tiltX * 0.2, height * 0.3 - mouse.tiltY * 0.2, 5,
-        width * 0.5 - mouse.tiltX * 0.2, height * 0.3 - mouse.tiltY * 0.2, width * 0.6
-      );
-      grad.addColorStop(0, 'rgba(0, 240, 255, 0.035)');
-      grad.addColorStop(0.5, 'rgba(2, 132, 199, 0.015)');
-      grad.addColorStop(1, 'rgba(2, 4, 10, 0)');
-      ctx.fillStyle = grad;
+      // Pure Pitch Black Base
+      ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, width, height);
 
       const cx = width * 0.5;
@@ -170,7 +259,7 @@
 
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
-        star.z -= 0.5;
+        star.z -= 0.45;
         if (star.z <= 1) {
           star.z = 1000;
           star.x = (Math.random() - 0.5) * width * 2;
@@ -184,14 +273,14 @@
           star.twinklePhase += star.twinkleSpeed;
           const twinkle = (Math.sin(star.twinklePhase) + 1) * 0.5;
           const alpha = star.baseAlpha * (0.65 + 0.35 * twinkle) * (1 - star.z / 1000);
-          const r = star.size * (1 - star.z / 1000) * 1.5 + 0.4;
+          const r = star.size * (1 - star.z / 1000) * 1.4 + 0.4;
 
           ctx.beginPath();
           ctx.arc(px, py, r, 0, Math.PI * 2);
 
           if (star.isCyan) {
-            ctx.fillStyle = 'rgba(0, 240, 255, ' + alpha + ')';
-            ctx.shadowColor = '#00f0ff';
+            ctx.fillStyle = 'rgba(56, 189, 248, ' + alpha + ')';
+            ctx.shadowColor = '#38bdf8';
             ctx.shadowBlur = r * 2.5;
           } else {
             ctx.fillStyle = 'rgba(255, 255, 255, ' + alpha + ')';
@@ -210,7 +299,7 @@
   }
 
   /* ==============================================================
-     3. REFINED 3D CARD PERSPECTIVE TILT
+     4. CARD TILT
      ============================================================== */
   function setup3DCardTilt() {
     const cards = document.querySelectorAll('.card-tier, div[class*="rounded-2xl"], div[class*="rounded-3xl"]');
@@ -222,8 +311,8 @@
         const cx = rect.width / 2;
         const cy = rect.height / 2;
 
-        const rotX = ((y - cy) / cy) * -4.5;
-        const rotY = ((x - cx) / cx) * 4.5;
+        const rotX = ((y - cy) / cy) * -3.5;
+        const rotY = ((x - cx) / cx) * 3.5;
 
         card.style.transform = 'perspective(1200px) rotateX(' + rotX.toFixed(2) + 'deg) rotateY(' + rotY.toFixed(2) + 'deg) translateY(-2px)';
       });
@@ -232,80 +321,6 @@
         card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0px)';
       });
     });
-  }
-
-  /* ==============================================================
-     4. AVENGERS THEME BGM CONTROLLER & AUDIO ENGINE
-     ============================================================== */
-  function setupAvengersBGM() {
-    if (document.getElementById('stark-bgm-widget')) return;
-
-    // Create Audio Element
-    let audio = document.getElementById('stark-avengers-audio');
-    if (!audio) {
-      audio = document.createElement('audio');
-      audio.id = 'stark-avengers-audio';
-      audio.src = '/assets/avengers-theme.mp3';
-      audio.loop = true;
-      audio.preload = 'auto';
-      audio.volume = 0.35;
-      document.body.appendChild(audio);
-    }
-
-    // Create Floating Controller
-    const widget = document.createElement('div');
-    widget.id = 'stark-bgm-widget';
-    widget.className = 'stark-bgm-controller';
-    widget.title = 'Click to Play / Pause Avengers Theme BGM';
-    widget.innerHTML = `
-      <div class="stark-bgm-soundwave">
-        <span class="stark-bgm-bar"></span>
-        <span class="stark-bgm-bar"></span>
-        <span class="stark-bgm-bar"></span>
-        <span class="stark-bgm-bar"></span>
-      </div>
-      <span class="stark-bgm-label">Avengers BGM</span>
-      <span class="stark-bgm-status" id="stark-bgm-status-text">▶ PLAY</span>
-    `;
-    document.body.appendChild(widget);
-
-    const statusText = widget.querySelector('#stark-bgm-status-text');
-
-    function togglePlay() {
-      if (audio.paused) {
-        audio.play().then(() => {
-          widget.classList.add('stark-bgm-playing');
-          statusText.textContent = '⏸ PAUSE';
-          statusText.style.color = '#00f0ff';
-        }).catch((err) => {
-          console.log('Autoplay restriction, user click required');
-        });
-      } else {
-        audio.pause();
-        widget.classList.remove('stark-bgm-playing');
-        statusText.textContent = '▶ PLAY';
-        statusText.style.color = '#94a3b8';
-      }
-    }
-
-    widget.addEventListener('click', (e) => {
-      e.stopPropagation();
-      togglePlay();
-    });
-
-    // Optional: Start on first user interaction with the page
-    const startOnInteraction = () => {
-      if (audio.paused) {
-        audio.play().then(() => {
-          widget.classList.add('stark-bgm-playing');
-          statusText.textContent = '⏸ PAUSE';
-          statusText.style.color = '#00f0ff';
-        }).catch(() => {});
-      }
-      window.removeEventListener('click', startOnInteraction);
-    };
-
-    window.addEventListener('click', startOnInteraction, { once: true });
   }
 
 })();
