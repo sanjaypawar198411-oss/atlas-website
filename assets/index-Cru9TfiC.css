@@ -219,9 +219,7 @@ a[href*="checkout"]:hover {
 /* Secondary CTA (Chamfered Amber Glass) */
 .hero-actions .button.hero-btn-secondary,
 .btn-pill-ghost,
-.btn-pill-secondary,
-a[class*="border-white/10"],
-button[class*="border-white/10"] {
+.btn-pill-secondary {
   position: relative !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -243,9 +241,7 @@ button[class*="border-white/10"] {
 
 .hero-actions .button.hero-btn-secondary:hover,
 .btn-pill-ghost:hover,
-.btn-pill-secondary:hover,
-a[class*="border-white/10"]:hover,
-button[class*="border-white/10"]:hover {
+.btn-pill-secondary:hover {
   background: rgba(245, 158, 11, 0.18) !important;
   color: #ffffff !important;
   border-color: rgba(245, 158, 11, 0.65) !important;
@@ -367,4 +363,70 @@ footer a, footer span, footer p {
 }
 footer a:hover {
   color: #ffffff !important;
+}
+
+
+/* ==========================================================================
+   FOOTER SOCIAL MEDIA LINKS (CLEAN ROUNDED ICONS)
+   ========================================================================== */
+footer a[href*="whatsapp"],
+footer a[href*="instagram"],
+footer a[href*="youtube"],
+footer a[href*="twitter"],
+footer a[aria-label="WhatsApp"],
+footer a[aria-label="Instagram"],
+footer a[aria-label="YouTube"],
+footer a[aria-label="Twitter"],
+footer div.mt-7 a.rounded-full,
+footer div[class*="flex items-center gap-3"] a {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  clip-path: none !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: none !important;
+  color: #94a3b8 !important;
+  transition: all 0.25s ease !important;
+}
+
+footer a[href*="whatsapp"]:hover,
+footer a[href*="instagram"]:hover,
+footer a[href*="youtube"]:hover,
+footer a[href*="twitter"]:hover,
+footer a[aria-label="WhatsApp"]:hover,
+footer a[aria-label="Instagram"]:hover,
+footer a[aria-label="YouTube"]:hover,
+footer a[aria-label="Twitter"]:hover,
+footer div.mt-7 a.rounded-full:hover,
+footer div[class*="flex items-center gap-3"] a:hover {
+  background: rgba(56, 189, 248, 0.15) !important;
+  border-color: rgba(56, 189, 248, 0.45) !important;
+  color: #38bdf8 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25) !important;
+}
+
+footer a[href*="whatsapp"] svg,
+footer a[href*="instagram"] svg,
+footer a[href*="youtube"] svg,
+footer a[href*="twitter"] svg,
+footer a[aria-label="WhatsApp"] svg,
+footer a[aria-label="Instagram"] svg,
+footer a[aria-label="YouTube"] svg,
+footer a[aria-label="Twitter"] svg,
+footer div.mt-7 a.rounded-full svg,
+footer div[class*="flex items-center gap-3"] a svg {
+  width: 16px !important;
+  height: 16px !important;
+  display: block !important;
+  fill: currentColor !important;
 }

@@ -154,12 +154,13 @@
       if (founderCard && !founderCard.classList.contains('punit-applied')) {
         founderCard.classList.add('punit-applied');
 
-        // Update founder image to /punit.png
-        const img = founderCard.querySelector('img');
-        if (img) {
-          img.src = '/punit.png';
-          img.alt = 'Punit Pawar — Founder & Creator of Victor AI';
-          img.className = 'w-14 h-14 md:w-16 md:h-16 rounded-2xl object-cover shrink-0 ring-2 ring-cyan-400/40 shadow-[0_0_20px_rgba(56,189,248,0.3)]';
+        // Remove creator image completely as requested
+        const pic = founderCard.querySelector('picture');
+        if (pic && pic.parentNode) {
+          pic.parentNode.removeChild(pic);
+        } else {
+          const img = founderCard.querySelector('img');
+          if (img && img.parentNode) img.parentNode.removeChild(img);
         }
 
         // Update founder title / name
