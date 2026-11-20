@@ -96,27 +96,28 @@ html, body {
 }
 
 .victor-logo-frame {
-  width: 34px !important;
-  height: 34px !important;
-  border-radius: 50% !important;
-  background: transparent !important;
-  border: none !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 9px !important;
+  background: #000000 !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45) !important;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.25) !important;
   overflow: hidden !important;
-  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
 }
 
 .victor-brand-logo:hover .victor-logo-frame {
   transform: scale(1.08) !important;
-  box-shadow: 0 0 24px rgba(56, 189, 248, 0.75) !important;
+  border-color: rgba(56, 189, 248, 0.75) !important;
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.55) !important;
 }
 
 .victor-logo-img {
-  width: 34px !important;
-  height: 34px !important;
+  width: 28px !important;
+  height: 28px !important;
   object-fit: cover !important;
   display: block !important;
 }
