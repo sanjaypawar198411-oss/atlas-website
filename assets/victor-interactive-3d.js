@@ -155,13 +155,9 @@
         founderCard.classList.add('punit-applied');
 
         // Remove creator image completely as requested
-        const pic = founderCard.querySelector('picture');
-        if (pic && pic.parentNode) {
-          pic.parentNode.removeChild(pic);
-        } else {
-          const img = founderCard.querySelector('img');
-          if (img && img.parentNode) img.parentNode.removeChild(img);
-        }
+        founderCard.querySelectorAll('picture, img').forEach(el => {
+          if (el && el.parentNode) el.parentNode.removeChild(el);
+        });
 
         // Update founder title / name
         const nameEl = founderCard.querySelector('.text-white.font-semibold, div[class*="text-lg"]');

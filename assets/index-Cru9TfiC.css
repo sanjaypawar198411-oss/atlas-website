@@ -430,3 +430,20 @@ footer div[class*="flex items-center gap-3"] a svg {
   display: block !important;
   fill: currentColor !important;
 }
+
+/* ==========================================================================
+   HIDE CREATOR / FOUNDER IMAGE (ABOUT SECTION)
+   ========================================================================== */
+.punit-applied picture,
+.punit-applied img,
+div[class*="flex items-center gap-4 mb-8"] picture,
+div[class*="flex items-center gap-4 mb-8"] img,
+section:has(.punit-applied) picture,
+section:has(.punit-applied) img {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
