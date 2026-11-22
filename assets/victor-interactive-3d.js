@@ -84,7 +84,7 @@
         firstLink.setAttribute('aria-label', 'Victor AI');
         firstLink.innerHTML = `
           <div class="victor-logo-frame">
-            <img src="/logo.png" alt="Victor AI" class="victor-logo-img" />
+            <img src="/victor-logo.png" alt="Victor AI" class="victor-logo-img" />
           </div>
           <span class="victor-brand-name">VICTOR AI</span>
         `;
@@ -114,7 +114,7 @@
         footerLink.className = 'victor-brand-logo victor-applied group w-fit';
         footerLink.innerHTML = `
           <div class="victor-logo-frame">
-            <img src="/logo.png" alt="Victor AI" class="victor-logo-img" />
+            <img src="/victor-logo.png" alt="Victor AI" class="victor-logo-img" />
           </div>
           <span class="victor-brand-name">VICTOR AI</span>
         `;
