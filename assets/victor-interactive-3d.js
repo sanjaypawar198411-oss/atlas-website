@@ -154,26 +154,33 @@
       if (founderCard && !founderCard.classList.contains('punit-applied')) {
         founderCard.classList.add('punit-applied');
 
-        // Remove creator image completely as requested
-        founderCard.querySelectorAll('picture, img').forEach(el => {
-          if (el && el.parentNode) el.parentNode.removeChild(el);
-        });
+                // Ensure creator image is prominently displayed
+        const headerEl = founderCard.querySelector('.flex.items-center, div[class*="items-center"]');
+        if (headerEl) {
+          let photoContainer = headerEl.querySelector('.punit-photo-container');
+          if (!photoContainer) {
+            photoContainer = document.createElement('div');
+            photoContainer.className = 'punit-photo-container relative w-24 h-24 md:w-28 md:h-28 rounded-2xl overflow-hidden border-2 border-[#00f0ff]/50 shadow-[0_0_35px_rgba(0,240,255,0.35)] flex-shrink-0 bg-white/5 mr-4';
+            photoContainer.innerHTML = '<img src="/punit-avatar.webp" alt="Punit Pawar — Founder & CEO" class="w-full h-full object-cover object-top" loading="eager" width="112" height="112" />';
+            headerEl.insertBefore(photoContainer, headerEl.firstChild);
+          }
+        }
 
         // Update founder title / name
-        const nameEl = founderCard.querySelector('.text-white.font-semibold, div[class*="text-lg"]');
+        const nameEl = founderCard.querySelector('.text-white.font-semibold, .text-white.font-bold, div[class*="text-lg"], h3');
         if (nameEl) {
           nameEl.textContent = 'Punit Pawar';
         }
 
-        const roleEl = founderCard.querySelector('.text-white\\/40, div[class*="text-sm"]');
+        const roleEl = founderCard.querySelector('.text-\[\#00f0ff\], .text-white\/40, div[class*="text-sm"]');
         if (roleEl) {
-          roleEl.textContent = 'Founder, Engineer & Creator — India';
+          roleEl.textContent = 'Founder & CEO of Stark Industries | Creator of Victor AI';
         }
 
         // Update description paragraph
         const descEl = founderCard.querySelector('p');
-        if (descEl && descEl.textContent.includes('was founded by')) {
-          descEl.innerHTML = 'Victor AI was founded by <strong class="text-white">Punit Pawar</strong> — a self-taught developer, engineer, and creator from India who built everything solo: <span class="text-white font-medium">the code, the design, the vision.</span> No big team. No outside funding. Just one person who decided the future shouldn’t wait.';
+        if (descEl) {
+          descEl.innerHTML = '<strong class="text-white">Punit Pawar</strong> is the Founder and Chief Executive Officer (CEO) of Stark Industries and the creator of <span class="text-[#00f0ff] font-medium">Victor AI</span>, an AI-powered desktop assistant project.<br><br>He is passionate about technology, software development, artificial intelligence, innovation and building intelligent digital solutions.<br><br><span class="font-mono text-xs md:text-sm tracking-wider uppercase text-white/50 border-l-2 border-[#00f0ff]/50 pl-3 italic block mt-2">Stark Industries — Think. Build. Innovate.</span>';
         }
       }
     }
